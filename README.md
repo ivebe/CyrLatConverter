@@ -36,4 +36,5 @@ $.CyrLatConverter({
 &lt;/html&gt;
 </pre>
 
+
 For full options list, and tutorial (Serbian) go to <a href="http://www.ivebe.com/blog/cyrillic-to-latin-and-latin-to-cyrillic-jquery-plugin.html">http://www.ivebe.com/blog/cyrillic-to-latin-and-latin-to-cyrillic-jquery-plugin.html</a>
