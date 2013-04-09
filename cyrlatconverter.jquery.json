@@ -1,0 +1,31 @@
+{
+    "name": "CyrLatConverter",
+    "title": "CyrLatConverter Cyr to Lat and Lat to Cyr",
+    "description": "jQuery plugin for converting Latin to Cyrillic and Cyrillic to Latin characters.",
+    "keywords": [
+        "Cirilica",
+        "Latinica",
+        "Konvertor"
+    ],
+    "version": "0.1.5",
+    "author": {
+        "name": "Danijel Petrovic",
+        "url": "http://www.ivebe.com"
+    },
+    "maintainers": [
+        {
+            "name": "Danijel Petrovic",
+            "email": "webmaster@ivebe.com",
+            "url": "http://www.ivebe.com"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "apache",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0"
+        }
+    ],    
+    "homepage": "http://www.ivebe.com/blog/cyrillic-to-latin-and-latin-to-cyrillic-jquery-plugin.html",
+    "docs": "http://www.ivebe.com/blog/cyrillic-to-latin-and-latin-to-cyrillic-jquery-plugin.html",
+    "download": "http://www.ivebe.com/blog/cyrillic-to-latin-and-latin-to-cyrillic-jquery-plugin.html"
+}
