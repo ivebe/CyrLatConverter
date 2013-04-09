@@ -1,5 +1,5 @@
 {
-    "name": "CyrLatConverter",
+    "name": "cyrlatconverter",
     "title": "CyrLatConverter Cyr to Lat and Lat to Cyr",
     "description": "jQuery plugin for converting Latin to Cyrillic and Cyrillic to Latin characters.",
     "keywords": [
