@@ -10,8 +10,8 @@
 	<link rel="stylesheet" href="lytebox/lytebox.css" type="text/css" media="screen" />
 		
 		<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
-		<script type="text/javascript" src="cyrlatconverter_ignore_list_rs-v0.5.3.js"></script> 
-		<script type="text/javascript" src="cyrlatconverter.min-v0.5.3.js"></script>
+		<script type="text/javascript" src="cyrlatconverter_ignore_list_rs-v0.5.4.js"></script> 
+		<script type="text/javascript" src="cyrlatconverter.min-v0.5.4.js"></script>
 		
 		
 		
@@ -23,7 +23,7 @@
 <div style="width: 100%; float:left; text-align: center;"> 
 	<button id="cirilica">Prikaži na ćirilici</button>
 	<button id="latinica">Prikaži na latinici</button>
-	<button>Prikaži na default</button>
+	<button id="default">Prikaži na default</button>
 	&nbsp; Vreme izvršavanja skripte: <span id="exctime">0</span>. 
 </div>
 <br /><br />
@@ -169,7 +169,11 @@ do večnog boravišta.<br />
 
 
 <script>
-$.CyrLatConverter();
+$.CyrLatConverter({
+	button_cyr : "cirilica",
+	button_lat : "latinica",
+	button_default : "default"
+});
 </script>
 </body>
 
