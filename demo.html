@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<title>Cyrilic to Latin and Latin to Cyrilic jQuery plugin demo</title>
+		
+		<script type="text/javascript" language="javascript" src="lytebox/lytebox.js"></script>
+	<link rel="stylesheet" href="lytebox/lytebox.css" type="text/css" media="screen" />
+		
+		<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="cyrlatconverter_ignore_list_rs-v0.1.5.js"></script> 
+		<script type="text/javascript" src="cyrlatconverter.min-v0.1.5.js"></script>
+		
+		
+		
+	</head>
+
+
+<body class="CyrLatConvert">
+
+<div style="width: 100%; float:left; text-align: center;"> 
+	<button id="cirilica">Prikaži na ćirilici</button>
+	<button id="latinica">Prikaži na latinici</button>
+	<button>Prikaži na default</button>
+	&nbsp; Vreme izvršavanja skripte: <span id="exctime">0</span>. 
+</div>
+<br /><br />
+
+<a href="slika.jpg" class="lytebox" data-title="My Title">Image #1</a>
+
+<ul>	
+	<li>Пример реченице која је оригинално на ћирилици: Ана воли Милована.</li>
+	<li>Primer rečenice koja sadrži reči koje ne ulaze u transliteraciju: Ovaj <strong>plugin</strong> je pisan za <strong>jquery</strong>.</li>
+	<li>Primer rečenice koja sadrži nestandardne reči za ignorisanje dvoznaka: I onda je <i>Miljojko</i> otiš'o u <strong>Njemačku</strong>.</li>
+	<li>Primer rečenice koja sadrži reči za ignorisanje dvoznaka: <i>Djordju</i> je <strong>odzvonilo</strong> i on je <strong>odjurio</strong>.</li>
+</ul>
+
+
+<div style="width: 50%; float:left;"> 
+<p>
+Било је то у некој земљи сељака<br />
+на брдовитом Балкану,<br />
+умрла је мученичком смрћу<br />
+чета ђака<br />
+у једном дану.<br />
+</p><p>
+Исте су године<br />
+сви били рођени,<br />
+исто су им текли школски дани,<br />
+на исте свечаности<br />
+заједно су вођени,<br />
+од истих болести сви пелцовани<br />
+и сви умрли у истом дану.<br />
+</p><p>
+Било је то у некој земљи сељака<br />
+на брдовитом Балкану<br />
+умрла је јуначком смрћу<br />
+чета ђака<br />
+у истом дану.<br />
+</p><p>
+А педесет и пет минута<br />
+пре смртног трена<br />
+седела је у ђачкој клупи<br />
+чета малена<br />
+и исте задатке тешке<br />
+решавала: колико може<br />
+путник ако иде пешке...<br />
+и тако редом.<br />
+</p><p>
+Мисли су им биле пуне<br />
+и по свескама у школској торби<br />
+бесмислених лежало је безброј<br />
+петица и двојки.<br />
+Прегршт истих снова<br />
+и истих тајни<br />
+родољубивих и љубавних<br />
+стискали су у дну џепова.<br />
+И чинило се сваком<br />
+да ће дуго<br />
+да ће врло дуго<br />
+трчати испод свода плава<br />
+док све задатке на свету<br />
+не посвршава.<br />
+</p><p>
+Било је то у некој земљи сељака<br />
+на брдовитом Балкану<br />
+умрла је јуначком смрћу<br />
+чета ђака<br />
+у истом дану.<br />
+</p><p>
+Дечака редови цели<br />
+узели се за руке<br />
+и са школског задњег часа<br />
+на стрељање пошли мирно<br />
+као да смрт није ништа.<br />
+</p><p>
+Другова редови цели<br />
+истог часа се узнели<br />
+до вечног боравишта.
+</p>
+</div>
+
+<div style="width: 50%; float:left;">
+<p>	
+Bilo je to u nekoj zemlji seljaka<br />
+na brdovitom Balkanu,<br />
+umrla je mučeničkom smrću<br />
+četa đaka<br />
+u jednom danu.<br />
+</p><p>
+Iste su godine<br />
+svi bili rođeni,<br />
+isto su im tekli školski dani,<br />
+na iste svečanosti<br />
+zajedno su vođeni,<br />
+od istih bolesti svi pelcovani<br />
+i svi umrli u istom danu.<br />
+</p><p>
+Bilo je to u nekoj zemlji seljaka<br />
+na brdovitom Balkanu<br />
+umrla je junačkom smrću<br />
+četa đaka<br />
+u istom danu.<br />
+</p><p>
+A pedeset i pet minuta<br />
+pre smrtnog trena<br />
+sedela je u đačkoj klupi<br />
+četa malena<br />
+i iste zadatke teške<br />
+rešavala: koliko može<br />
+putnik ako ide peške...<br />
+i tako redom.<br />
+</p><p>
+Misli su im bile pune<br />
+i po sveskama u školskoj torbi<br />
+besmislenih ležalo je bezbroj<br />
+petica i dvojki.<br />
+Pregršt istih snova<br />
+i istih tajni<br />
+rodoljubivih i ljubavnih<br />
+stiskali su u dnu dzepova.<br />
+I činilo se svakom<br />
+da će dugo<br />
+da će vrlo dugo<br />
+trčati ispod svoda plava<br />
+dok sve zadatke na svetu<br />
+ne posvršava.<br />
+</p><p>
+Bilo je to u nekoj zemlji seljaka<br />
+na brdovitom Balkanu<br />
+umrla je junačkom smrću<br />
+četa đaka<br />
+u istom danu.<br />
+</p><p>
+Dečaka redovi celi<br />
+uzeli se za ruke<br />
+i sa školskog zadnjeg časa<br />
+na streljanje pošli mirno<br />
+kao da smrt nije ništa.<br />
+</p><p>
+Drugova redovi celi<br />
+istog časa se uzneli<br />
+do večnog boravišta.<br />
+</p>	
+</div>
+
+
+
+<script>
+$.CyrLatConverter();
+</script>
+</body>
+
+</html>
