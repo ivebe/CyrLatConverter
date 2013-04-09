@@ -20,11 +20,15 @@
 
 <body class="CyrLatConvert">
 
+
 <div style="width: 100%; float:left; text-align: center;"> 
 	<button id="cirilica">Prikaži na ćirilici</button>
 	<button id="latinica">Prikaži na latinici</button>
 	<button id="default">Prikaži na default</button>
-	&nbsp; Vreme izvršavanja skripte: <span id="exctime">0</span>. 
+	&nbsp; Vreme izvršavanja skripte: <span id="exctime">0</span>.<br />
+	Pokretanje transliteracije pomoću <span class="CyrLatIgnore">hash</span> taga u linku.
+	<a href="#cyr">cyr</a>
+	<a href="#lat">lat</a> 
 </div>
 <br /><br />
 
@@ -168,11 +172,16 @@ do večnog boravišta.<br />
 
 <script>
 $.CyrLatConverter({
-	button_cyr : "cirilica",
-	button_lat : "latinica",
-	button_default : "default"
-});
+	button_cyr : 'cirilica',
+	button_lat : 'latinica',
+	button_default : 'default',
+	permalink_hash : "on",
+	
+	benchmark : "on",
+	benchmark_eval : "document.getElementById('exctime').innerHTML = '%s%';"		
+});	
 </script>
+
 </body>
 
 </html>
