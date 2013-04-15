@@ -43,7 +43,7 @@
  * 
  * @author Danijel Petrovic 
  * @copyright Danijel Petrovic, www.ivebe.com, 2013
- * @version 0.5.3
+ * @version 0.5.4
  */
 	
 	

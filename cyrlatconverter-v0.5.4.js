@@ -21,7 +21,7 @@
  *  - permalink_hash_lat : define hash tag to trigger transliteration from Cyrillic to Latin, default "#lat"
  * 
  *  - permalink_hash_cyr : define hash tag to trigger transliteration from Latin to Cyrillic, default "#cyr"
- *   	
+ * 		
  *  - permalink_hash : enable or disable hash tags for transliteration trigger, default "off"
  * 
  *  - ignore_list_include_unicode : if list for ignoring transliteration contains Cyrillic words, set this to "on", otherwise to "off"
@@ -32,10 +32,30 @@
  * 
  *  - benchmark_eval : you can call any code, and %s% will be replaced with script time execution.
  *                     Default: "console.log('Execution time: %s%')"
+ *
+ *  - button_cyr : id of the button on which click transliteration to cyrillic will be called
+ *
+ *  - button_lat : id of the button on which click transliteration to latin will be called
+ *
+ *  - button_default : id of the button on which click default contetn will be shown
+ * 
+ *  - onC2L : set user function to be called when C2L is done 
+ * 
+ *  - onL2C : set user function to be called when L2C is done
  * 
  * Example of usage:
- * 	$.CyrLatConverter({cookie_duration : '10'});
  * 
+ * 	$.CyrLatConverter({
+ *	  permalink_hash : "on",
+ *	
+ *	  onL2C : function(){
+ *		alert('aaa');
+ *	  },
+ *	
+ *	  onC2L : function(){
+ *		alert('bbb');
+ *	  }
+ *  });
  *  
  *  
  * 
@@ -66,7 +86,7 @@
  * 
  * @author Danijel Petrovic 
  * @copyright Danijel Petrovic, www.ivebe.com, 2013
- * @version 0.5.3
+ * @version 0.5.4
  */
 
 (function($) {
@@ -78,7 +98,10 @@
 		permalink_hash : "off",
 		ignore_list_include_unicode : "on",
 		benchmark : 'off',
-		benchmark_eval : "console.log('Execution time: %s%')"
+		benchmark_eval : "console.log('Execution time: %s%')",
+		button_cyr : '',
+		button_lat : '',
+		button_default : ''
 	};
 	
 	var Lat2Cyr = {
@@ -557,6 +580,36 @@
 			
 			//console.log(CyrLatIgnore);
 			
+			if(config.button_cyr != '')
+			{
+				if(config.button_cyr.charAt(0) != '#')
+					config.button_cyr = '#' + config.button_cyr;
+					
+				$(config.button_cyr).click(function(){
+			        $.CyrLatConverter('L2C');
+			    });
+			}
+			
+			if(config.button_lat != '')
+			{
+				if(config.button_lat.charAt(0) != '#')
+					config.button_lat = '#' + config.button_lat;
+					
+				$(config.button_lat).click(function(){
+			        $.CyrLatConverter('C2L');
+			    });
+			}
+			
+			if(config.button_default != '')
+			{
+				if(config.button_default.charAt(0) != '#')
+					config.button_default = '#' + config.button_default;
+					
+				$(config.button_default).click(function(){
+			        $.CyrLatConverter('default');
+			    });
+			}
+			
 			//start benchmark
 			if(config.benchmark.toString().toLowerCase() == 'on')
 			{
@@ -601,6 +654,8 @@
 			if(config.benchmark.toString().toLowerCase() == 'on' && !init_benchmark_active)
 				eval(config.benchmark_eval.replace('%s%', (new Date().getTime() - start) + 'ms'));
 					
+			if(config.onL2C != 'undefined')
+				config.onL2C.call();
 			
 			return true;
 		},
@@ -619,14 +674,17 @@
 			if(config.benchmark.toString().toLowerCase() == 'on' && !init_benchmark_active)
 				eval(config.benchmark_eval.replace('%s%', (new Date().getTime() - start) + 'ms'));
 					
+			if(config.onC2L != 'undefined')
+				config.onC2L.call();
 			
 			return true;
 		}
 	}
 
-	$.CyrLatConverter = function(method) { 	
-		if(typeof method == 'undefined')
-			methods.init.call(this, null);		
+	$.CyrLatConverter = function(method) {
+		if (typeof method === 'undefined' || typeof method === 'object' || !method) {
+			methods.init.apply(this, arguments);
+		}		
 		else if(method.toString().toLowerCase() == 'default')
 		{ 
 			setCookie('default'); //set to default, so no C2L or L2C will be called
@@ -645,9 +703,8 @@
 			}
 			else
 				methods[method].call(this);
-		} else if ( typeof method === 'object' || !method) {
-			methods.init.apply(this, arguments);
-		} else {
+		}  
+		else {
 			$.error('Unknown call to ' + method);
 		}
 
