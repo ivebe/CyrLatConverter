@@ -475,13 +475,13 @@
 		var value;
 		
 		//if list of words to ifnore exist...
-		if (typeof CyrLatIgnore != 'undefined')
+		if (typeof CyrLatIgnoreList != 'undefined')
 		{
 			var words = splitWords(txt);
 			
 			//console.log(words);
 			$.each(words, function(i, w) {
-				if(!(w.toString().toLowerCase() in CyrLatIgnore)) //if word not set in ignore list
+				if(!(w.toString().toLowerCase() in CyrLatIgnoreList)) //if word not set in ignore list
 				{
 					value = w.split('');
 
@@ -492,7 +492,7 @@
 					words[i] = value.join('');
 				}
 				else
-					words[i] = CyrLatIgnore[w.toString().toLowerCase()] == '' ? w : CyrLatIgnore[w.toString().toLowerCase()];  
+					words[i] = CyrLatIgnoreList[w.toString().toLowerCase()] == '' ? w : CyrLatIgnoreList[w.toString().toLowerCase()];  
 			});
 			
 			return words.join(''); //join with NO space, as spaces are preserved in split function.
@@ -654,7 +654,7 @@
 			if(config.benchmark.toString().toLowerCase() == 'on' && !init_benchmark_active)
 				eval(config.benchmark_eval.replace('%s%', (new Date().getTime() - start) + 'ms'));
 					
-			if(config.onL2C != 'undefined')
+			if(typeof(config.onL2C) != 'undefined')
 				config.onL2C.call();
 			
 			return true;
@@ -674,7 +674,7 @@
 			if(config.benchmark.toString().toLowerCase() == 'on' && !init_benchmark_active)
 				eval(config.benchmark_eval.replace('%s%', (new Date().getTime() - start) + 'ms'));
 					
-			if(config.onC2L != 'undefined')
+			if(typeof(config.onC2L) != 'undefined')
 				config.onC2L.call();
 			
 			return true;
