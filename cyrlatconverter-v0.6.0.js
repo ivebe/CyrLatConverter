@@ -69,7 +69,7 @@
  * www.ivebe.com/blog/cyrillic-to-latin-and-latin-to-cyrillic-jquery-plugin.html         
  * ************************************************************************************ 
  * 
- * Copyright [2013] [Danijel Petrovic]
+ * Copyright [2014] [Danijel Petrovic]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -85,8 +85,8 @@
  * 
  * 
  * @author Danijel Petrovic 
- * @copyright Danijel Petrovic, www.ivebe.com, 2013
- * @version 0.5.4
+ * @copyright Danijel Petrovic, www.ivebe.com, 2014
+ * @version 0.6.0
  */
 
 (function($) {
@@ -103,6 +103,8 @@
 		button_lat : '',
 		button_default : ''
 	};
+	
+	var SELECTOR = '.CyrLatConvert';
 	
 	var Lat2Cyr = {
 		"a" : "а",
@@ -590,7 +592,7 @@
 					config.button_cyr = '#' + config.button_cyr;
 					
 				$(config.button_cyr).click(function(){
-			        $.CyrLatConverter('L2C');
+			        $( SELECTOR ).CyrLatConverter('L2C');
 			    });
 			}
 			
@@ -600,7 +602,7 @@
 					config.button_lat = '#' + config.button_lat;
 					
 				$(config.button_lat).click(function(){
-			        $.CyrLatConverter('C2L');
+			        $( SELECTOR ).CyrLatConverter('C2L');
 			    });
 			}
 			
@@ -610,7 +612,7 @@
 					config.button_default = '#' + config.button_default;
 					
 				$(config.button_default).click(function(){
-			        $.CyrLatConverter('default');
+			        $( SELECTOR ).CyrLatConverter('default');
 			    });
 			}
 			
@@ -649,7 +651,7 @@
 			if(config.benchmark.toString().toLowerCase() == 'on' && !init_benchmark_active)
 				var start = new Date().getTime();
 			
-			$(".CyrLatConvert").each(function() {			
+			$( SELECTOR ).each(function() {			
 				convert_L2C(this);
 			});
 			setCookie('L2C');
@@ -669,7 +671,7 @@
 			if(config.benchmark.toString().toLowerCase() == 'on' && !init_benchmark_active)
 				var start = new Date().getTime();
 			
-			$(".CyrLatConvert").each(function() {			
+			$( SELECTOR ).each(function() {			
 				convert_C2L(this);
 			});
 			setCookie('C2L');
@@ -685,7 +687,10 @@
 		}
 	}
 
-	$.CyrLatConverter = function(method) {
+	$.fn.CyrLatConverter = function(method) {
+		
+		SELECTOR = this.selector;
+		
 		if (typeof method === 'undefined' || typeof method === 'object' || !method) {
 			methods.init.apply(this, arguments);
 		}		
@@ -712,7 +717,14 @@
 			$.error('Unknown call to ' + method);
 		}
 
-		return false;
+		return this;
+	};
+	
+	/**
+	 * Backward compatibile with previous versions.
+	 */
+	$.CyrLatConverter = function(method) {
+	    return $( SELECTOR ).CyrLatConverter(method);
 	};
 
 })(jQuery); 
