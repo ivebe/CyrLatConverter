@@ -18,7 +18,7 @@ It's easy to setup and use.
 &lt;script src=&quot;cyrlatconverter.js&quot;&gt;&lt;/script&gt; 
 
 &lt;/head&gt;
-&lt;body class=&quot;CyrLatConvert&quot;&gt;
+&lt;body&gt;
 
 &lt;a href=&quot;#cyr&quot;&gt;Ćirilica&lt;/a&gt;
 &lt;a href=&quot;#lat&quot;&gt;Latinica&lt;/a&gt;
@@ -28,7 +28,7 @@ Body content
 ...
 
 &lt;script&gt;
-$.CyrLatConverter({
+$("body").CyrLatConverter({
   permalink_hash : &quot;on&quot;
 });
 &lt;/script&gt;
