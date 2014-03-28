@@ -1,12 +1,11 @@
 module.exports = function(grunt) {
  
   grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
     jshint: {
-      all: ['Gruntfile.js', 'cyrlatconverter-v0.5.4.js']
+      myFiles: ['cyrlatconverter-v0.5.4.js']
     }
   });
  
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.registerTask('default', 'jshint');
- 
 };
