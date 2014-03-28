@@ -1,0 +1,6 @@
+{
+  "name": "jsdevenv",
+  "scripts": {
+    "test": "grunt travis"
+  }
+}
