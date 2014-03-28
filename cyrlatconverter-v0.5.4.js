@@ -550,6 +550,7 @@
 			return false;
 		});
 		
+		$(el).find("#CyrLatWrap").contents().unwrap();
 	};
 
 	function convert_C2L(el) {
@@ -569,7 +570,10 @@
 			}
 			return false;
 		});
+		
+		$(el).find("#CyrLatWrap").contents().unwrap();
 	};
+	
 	var init_benchmark_active = false;
 	var methods = {
 		init : function(customSettings) {
