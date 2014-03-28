@@ -1,11 +1,10 @@
 {
-  "name": "node-travis",
-  "version": "0.1.0",
+  "name": "CyrLatConverter",
+  "version": "0.5.4",
   "devDependencies": {
-    "grunt": "0.4.1",
-    "grunt-contrib-jshint": "0.6.3"
-  },
-  "scripts": {
-    "test": "grunt --verbose"
+    "grunt": "~0.4.2",
+    "grunt-contrib-jshint": "~0.6.3",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt-contrib-uglify": "~0.2.2"
   }
 }
