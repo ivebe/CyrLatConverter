@@ -101,7 +101,8 @@
 		benchmark_eval : "console.log('Execution time: %s%')",
 		button_cyr : '',
 		button_lat : '',
-		button_default : ''
+		button_default : '',
+		elements : '.CyrLatConvert'
 	};
 	
 	var Lat2Cyr = {
@@ -649,7 +650,7 @@
 			if(config.benchmark.toString().toLowerCase() == 'on' && !init_benchmark_active)
 				var start = new Date().getTime();
 			
-			$(".CyrLatConvert").each(function() {			
+			$(config.elements).each(function() {			
 				convert_L2C(this);
 			});
 			setCookie('L2C');
@@ -669,7 +670,7 @@
 			if(config.benchmark.toString().toLowerCase() == 'on' && !init_benchmark_active)
 				var start = new Date().getTime();
 			
-			$(".CyrLatConvert").each(function() {			
+			$(config.elements).each(function() {			
 				convert_C2L(this);
 			});
 			setCookie('C2L');
