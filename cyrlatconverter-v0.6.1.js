@@ -86,7 +86,7 @@
  * 
  * @author Danijel Petrovic 
  * @copyright Danijel Petrovic, www.ivebe.com, 2014
- * @version 0.6.0
+ * @version 0.6.1
  */
 
 (function($) {
