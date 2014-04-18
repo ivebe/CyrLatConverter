@@ -26,7 +26,7 @@
  * www.ivebe.com/blog/cyrillic-to-latin-and-latin-to-cyrillic-jquery-plugin.html         
  * ************************************************************************************ 
  * 
- * Copyright [2013] [Danijel Petrovic]
+ * Copyright [2014] [Danijel Petrovic]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@
  * 
  * 
  * @author Danijel Petrovic 
- * @copyright Danijel Petrovic, www.ivebe.com, 2013
+ * @copyright Danijel Petrovic, www.ivebe.com, 2014
  * @version 0.5.4
  */
 	
