@@ -3,11 +3,11 @@
  * 
  * /// Calls ///
  * 
- * - $.CyrLatConverter() : trigger last transliteration used, from the cookie
- * - $.CyrLatConverter('default') : show original transliteration
- * - $.CyrLatConverter('L2C') : trigger transliteration to Cyrillic
- * - $.CyrLatConverter('C2L') : trigger transliteration to Latin
- * - $.CyrLatConverter({options}) : initialize plugin with values from one of the options bellow
+ * - $("body").CyrLatConverter() : trigger last transliteration used, from the cookie
+ * - $("body").CyrLatConverter('default') : show original transliteration
+ * - $("body").CyrLatConverter('L2C') : trigger transliteration to Cyrillic
+ * - $("body").CyrLatConverter('C2L') : trigger transliteration to Latin
+ * - $("body").CyrLatConverter({options}) : initialize plugin with values from one of the options bellow
  * 
  * /// Options: ///
  *  
@@ -45,7 +45,7 @@
  * 
  * Example of usage:
  * 
- * 	$.CyrLatConverter({
+ * - $("body").CyrLatConverter({
  *	  permalink_hash : "on",
  *	
  *	  onL2C : function(){
