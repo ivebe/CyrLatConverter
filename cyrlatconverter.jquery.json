@@ -5,9 +5,11 @@
     "keywords": [
         "Cirilica",
         "Latinica",
-        "Konvertor"
+        "Konvertor",
+        "Converter",
+        "Transliteration"
     ],
-    "version": "0.6.0",
+    "version": "0.6.1",
     "author": {
         "name": "Danijel Petrovic",
         "url": "http://www.ivebe.com"
