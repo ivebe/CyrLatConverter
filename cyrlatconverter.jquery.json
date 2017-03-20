@@ -9,7 +9,7 @@
         "Converter",
         "Transliteration"
     ],
-    "version": "0.6.1",
+    "version": "0.6.2",
     "author": {
         "name": "Danijel Petrovic",
         "url": "http://www.ivebe.com"
@@ -17,7 +17,7 @@
     "maintainers": [
         {
             "name": "Danijel Petrovic",
-            "email": "webmaster@ivebe.com",
+            "email": "dan@ivebe.com",
             "url": "http://www.ivebe.com"
         }
     ],
