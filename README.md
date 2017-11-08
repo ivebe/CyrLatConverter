@@ -1,3 +1,5 @@
+# This branch is under development. Use it as such!
+
 # CyrLatConverter
 
 CyrLatConverter is jQuery plugin for transliteration complete web site (or just part of it) from Latin to Cyrillic and vice versa. Built with Serbian language as reference.
