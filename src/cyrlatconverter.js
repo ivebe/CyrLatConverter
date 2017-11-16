@@ -367,8 +367,11 @@
                 words[i] = CyrLatIgnoreList[w.toString().toLowerCase()] === '' ? w : CyrLatIgnoreList[w.toString().toLowerCase()];
             else {
                 
-
-                validDoubleChain = !(typeof CyrLatIgnore_doubleletters !== 'undefined' && (w.toString().toLowerCase() in CyrLatIgnore_doubleletters));
+                //check is this word in the CyrLatIgnore_doubleLetters list, if so, then it's not valid chain
+                validDoubleChain = !(
+                    typeof CyrLatIgnore_doubleLetters !== 'undefined' &&
+                    CyrLatIgnore_doubleLetters.indexOf( w.toString().toLowerCase() ) > -1
+                );
 
                 //iterate through list of base words to ignore
                 if (typeof CyrLatIgnore_doubleLettersBase !== 'undefined') {
