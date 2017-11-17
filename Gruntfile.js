@@ -46,8 +46,13 @@ module.exports = function(grunt){
             }
         },
 
+        qunit: {
+            all: "test/qunit.html"
+        }
+
     });
 
-    grunt.registerTask("default", ["babel","regenerator","uglify"]);
+
+    grunt.registerTask("default", ["babel","regenerator","uglify","qunit"]);
 
 };
