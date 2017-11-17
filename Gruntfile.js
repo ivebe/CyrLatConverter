@@ -8,7 +8,7 @@ module.exports = function(grunt){
         babel: {
             options: {
                 sourceMap: true,
-                presets: ['es2015']
+                presets: ['env']
             },
             dist: {
                 files: {
@@ -34,7 +34,7 @@ module.exports = function(grunt){
         uglify: {
             main: {
                 files: {
-                    "cyrlatconverter.min.js":["dist/cyrlatconverter.es5.js", "dist/cyrlatconverter_ignore_list_rs.es5.js"]
+                    "cyrlatconverter.min.js":["dist/cyrlatconverter.trans.js", "dist/cyrlatconverter_ignore_list_rs.trans.js"]
                 }
             },
             options: {
