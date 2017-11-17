@@ -34,7 +34,7 @@ module.exports = function(grunt){
         uglify: {
             main: {
                 files: {
-                    "cyrlatconverter.min.js":["dist/cyrlatconverter.trans.js", "dist/cyrlatconverter_ignore_list_rs.trans.js"]
+                    "cyrlatconverter.min.js":["dist/cyrlatconverter.es5.js", "dist/cyrlatconverter_ignore_list_rs.es5.js"]
                 }
             },
             options: {
