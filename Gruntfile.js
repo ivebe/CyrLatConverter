@@ -46,13 +46,45 @@ module.exports = function(grunt){
             }
         },
 
+        connect: {
+            server: {
+                options: {
+                    port: 3232
+                }
+            }
+        },
+
         qunit: {
-            all: "test/qunit.html"
+            all: {
+                options: {
+                    urls: [
+                        '3.2.1',
+                        '3.0.0',
+                        '2.2.4',
+                        '2.2.0',
+                        '2.1.4',
+                        '2.1.0',
+                        '2.0.3',
+                        '2.0.0',
+                        '1.12.4',
+                        '1.12.0',
+                        '1.11.3',
+                        '1.11.0',
+                        '1.10.2',
+                        '1.10.0',
+                        '1.9.1',
+                        '1.9.0'
+                    ].map(function(v) {
+                        return 'http://localhost:<%= connect.server.options.port %>/test/qunit.html?v=' + v;
+                    })
+                }
+            }
         }
 
     });
 
 
-    grunt.registerTask("default", ["babel","regenerator","uglify","qunit"]);
+    grunt.registerTask("default", ["babel","regenerator","uglify","connect","qunit"]);
+    grunt.registerTask("unit", ["connect","qunit"]);
 
 };

@@ -1,0 +1,1 @@
+document.write('<script src="'+'http://code.jquery.com/jquery-' + location.search.match(/\?v=(.*)/)[1] + '.min.js'+'"><\/script>');
