@@ -1,3 +1,8 @@
 language: node_js
 node_js:
-  - 8.1.1
+- 8.1.1
+addons:
+  browserstack:
+    username: "danijelpetrovic1"
+    access_key:
+      secure: YptiMfE4nmmZJvOUo9UU9ghYS6d9daetifgvwP4UsbdwGpCqwOI7PxCtow0OT+QphP36ssO0W4RfZXrcNKfvrqum2FKA/8Tb1661ZQStAYBvXdwwlZbZsEhEorEvhhFUHGcgq3x9LZHD/E72XIhe/cupQ++kNGXO/at4U/+T7ys=
