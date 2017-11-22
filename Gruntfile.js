@@ -18,23 +18,10 @@ module.exports = function(grunt){
             }
         },
 
-        regenerator: {
-            options: {
-                includeRuntime: true
-            },
-            dist: {
-                files: {
-                    "dist/cyrlatconverter.es5.js": "dist/cyrlatconverter.trans.js",
-                    "dist/cyrlatconverter_ignore_list_rs.es5.js": "dist/cyrlatconverter_ignore_list_rs.trans.js"
-                }
-            }
-        },
-
-
         uglify: {
             main: {
                 files: {
-                    "cyrlatconverter.min.js":["dist/cyrlatconverter.es5.js", "dist/cyrlatconverter_ignore_list_rs.es5.js"]
+                    "cyrlatconverter.min.js":["dist/cyrlatconverter.trans.js", "dist/cyrlatconverter_ignore_list_rs.trans.js"]
                 }
             },
             options: {
@@ -48,6 +35,6 @@ module.exports = function(grunt){
     });
 
 
-    grunt.registerTask("default", ["babel","regenerator","uglify"]);
+    grunt.registerTask("default", ["babel", "uglify"]);
 
 };
