@@ -9,13 +9,9 @@
         "test/qunit.html?v=2.0.0",
         "test/qunit.html?v=1.12.4",
         "test/qunit.html?v=1.10.2",
-        "test/qunit.html?v=1.9.1",
-        "test/qunit.html?v=1.8.3",
-        "test/qunit.html?v=1.8.0",
-        "test/qunit.html?v=1.7.2",
-        "test/qunit.html?v=1.6.4"
+        "test/qunit.html?v=1.9.0"
     ],
-    "timeout": 60,
+    "timeout": 120,
     "browsers": [
         "chrome_previous",
         "chrome_latest",
@@ -24,7 +20,6 @@
         "opera_latest",
         "safari_latest",
         "safari_previous",
-        "ie_8",
         "ie_9",
         "ie_10",
         "ie_11"
