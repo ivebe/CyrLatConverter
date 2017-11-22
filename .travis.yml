@@ -1,8 +1,7 @@
 language: node_js
 node_js:
 - 8.1.1
-addons:
-  browserstack:
-    username: "danijelpetrovic1"
-    access_key:
-      secure: YptiMfE4nmmZJvOUo9UU9ghYS6d9daetifgvwP4UsbdwGpCqwOI7PxCtow0OT+QphP36ssO0W4RfZXrcNKfvrqum2FKA/8Tb1661ZQStAYBvXdwwlZbZsEhEorEvhhFUHGcgq3x9LZHD/E72XIhe/cupQ++kNGXO/at4U/+T7ys=
+env:
+  global:
+  - secure: EWSkw5h101Tsoq4IffhrZ8qvwCvmexzX0ji1fUXRvdN6jzy47W1oz3a6mvPxP/3uCv+dgjDW3nXsefZntv/rb0dgeg3hDOtPNLyjkUhw7I3xZ/zAFO1UHFjRdoVV9BdZGrttf63eXz8hYyIWXbIsLxY+2Lh6YVqyk+3ZFDiyZ0I=
+  - secure: HnVl9eI4o420ejZLLyZlQuU8TqaMkYp6eokf0/vB7H/6W/91Xj2bg4biwj2PBn/r+VqRpdCuRC0mQFrRZ8uTnPbDUrc8B8KFkvb9Ryjzkni+6dEIOE/j+HAHxF4KSbkKVaylg3NavNjdPefwrXVwxxE9gx1hfolz+pVTyzTLNxs=
