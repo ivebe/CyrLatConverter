@@ -2,14 +2,31 @@
     "username": "%BROWSERSTACK_USERNAME%",
     "key": "%BROWSERSTACK_KEY%",
     "test_framework": "qunit",
-    "test_path": "test/qunit.html?v=3.2.1",
+    "test_path": [
+        "test/qunit.html?v=3.2.1",
+        "test/qunit.html?v=3.0.0",
+        "test/qunit.html?v=2.2.4",
+        "test/qunit.html?v=2.0.0",
+        "test/qunit.html?v=1.12.4",
+        "test/qunit.html?v=1.10.2",
+        "test/qunit.html?v=1.9.1",
+        "test/qunit.html?v=1.8.3",
+        "test/qunit.html?v=1.8.0",
+        "test/qunit.html?v=1.7.2",
+        "test/qunit.html?v=1.6.4"
+    ],
     "timeout": 60,
     "browsers": [
-        {
-            "browser": "chrome",
-            "browser_version": "latest",
-            "os": "OS X",
-            "os_version": "Mountain Lion"
-        }
+        "chrome_previous",
+        "chrome_latest",
+        "firefox_previous",
+        "firefox_latest",
+        "opera_latest",
+        "safari_latest",
+        "safari_previous",
+        "ie_8",
+        "ie_9",
+        "ie_10",
+        "ie_11"
     ]
 }
