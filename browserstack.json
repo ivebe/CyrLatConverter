@@ -13,7 +13,10 @@
     "timeout": 180,
     "browsers": [
         "chrome_latest",
-        "firefox_latest",
+        {
+            "browser":"firefox",
+            "browser_version": "57.0"
+        },
         "safari_latest",
         "ie_9",
         "ie_10",
