@@ -1,14 +1,40 @@
-module.exports = function(grunt) {
+module.exports = function(grunt){
+    "use strict";
 
-  // Project configuration.
-  grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
-    jshint: {
-      myFiles: ['cyrlatconverter-v0.6.0.js']
-    }
-  });
+    require("load-grunt-tasks")(grunt);
 
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.registerTask('default', ['jshint']);
+    grunt.initConfig({
+
+        babel: {
+            options: {
+                sourceMap: true,
+                presets: ['env']
+            },
+            dist: {
+                files: {
+                    'dist/cyrlatconverter.trans.js': 'src/cyrlatconverter.js',
+                    'dist/cyrlatconverter_ignore_list_rs.trans.js': 'src/cyrlatconverter_ignore_list_rs.js'
+                }
+            }
+        },
+
+        uglify: {
+            main: {
+                files: {
+                    "cyrlatconverter.min.js":["dist/cyrlatconverter.trans.js", "dist/cyrlatconverter_ignore_list_rs.trans.js"]
+                }
+            },
+            options: {
+                mangle:{toplevel:true},
+                sourceMap: true,
+                sourceMapName: "cyrlatconverter.js.map",
+                sourceMapIncludeSources: true,
+                compress:true
+            }
+        }
+    });
+
+
+    grunt.registerTask("default", ["babel", "uglify"]);
 
 };
