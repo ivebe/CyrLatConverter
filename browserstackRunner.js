@@ -1,4 +1,3 @@
-require('exit-code')
 var browserstackRunner = require('browserstack-runner');
 var config = require('./browserstack.json');
 
