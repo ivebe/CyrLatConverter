@@ -1,7 +1,7 @@
 # CyrLatConverter
 
 [![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=NWw2ZTZLNnNCamtSWStPb1djRHlLKzJLcDJ4NlptTmNIbnV3d2pycDZ0TT0tLWJnL29ad0txanVaMXU4VjB2TThvN3c9PQ==--8218dec8c12a941e07abdcf8785af2606bb938a8)](https://www.browserstack.com/automate/public-build/NWw2ZTZLNnNCamtSWStPb1djRHlLKzJLcDJ4NlptTmNIbnV3d2pycDZ0TT0tLWJnL29ad0txanVaMXU4VjB2TThvN3c9PQ==--8218dec8c12a941e07abdcf8785af2606bb938a8)
-[![Build Status](https://travis-ci.org/ivebe/CyrLatConverter.svg?branch=ES6)](https://travis-ci.org/ivebe/CyrLatConverter)
+[![Build Status](https://travis-ci.org/ivebe/CyrLatConverter.svg?branch=master)](https://travis-ci.org/ivebe/CyrLatConverter)
 [![GitHub version](https://badge.fury.io/gh/ivebe%2FCyrLatConverter.svg)](https://badge.fury.io/gh/ivebe%2FCyrLatConverter)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
