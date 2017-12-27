@@ -1,19 +1,15 @@
 /*
  * Cyrillic to Latin and vice versa converter - ignore list
  *
- * NOTE: all keys in both arrays MUST be lowercase! 
- * 
  * /// CyrLatIgnore: ///
  *     KEY: lowercase word to ignore, as in page it will ignore it regardless of is it lower, upper or mixed case.
  *  VALUE: if value is set, word will be replaced with the value, if value empty, original word with original case will be preserved
  *  
- * /// CyrLatIgnore_doubleletters: ///
- * 	  KEY: lowercase word to ignore double letters chaining. Ex. Nj => Њ by default, here you can specify words which ignore this behavior 
- *  VALUE: always empty
+ * /// CyrLatIgnore_doubleLetters: ///
+ * 	  VALUE: lowercase word to ignore double letters chaining. Ex. Nj => Њ by default, here you can specify words which ignore this behavior
  *
- * /// CyrLatIgnore_doubleletters_base: ///
- * 	  KEY: lowercase BASE word to ignore double letters chaining. Ex. Nj => Њ by default, here you can specify words which ignore this behavior. All words that contains base word will be ignored from double letters chaining.
- *  VALUE: always empty
+ * /// CyrLatIgnore_doubleLettersBase: ///
+ * 	  VALUE: lowercase BASE word to ignore double letters chaining. Ex. Nj => Њ by default, here you can specify words which ignore this behavior. All words that contains base word will be ignored from double letters chaining.
  *  
  * 
  * ************************************************************************************ 
@@ -43,12 +39,12 @@
  * 
  * @author Danijel Petrovic 
  * @copyright Danijel Petrovic, www.ivebe.com, 2017
- * @version 0.6.2
+ * @version 0.7.0
  */
 	
 	
-//ignore exact words, and if value set, replace it with value	
-var CyrLatIgnoreList = {
+//ignore exact words, and if value is set, replace it with value
+let CyrLatIgnoreList = {
 	"plugin" : '',
 	"jquery" : 'jQuery',
 	"default" : '',
@@ -74,77 +70,76 @@ var CyrLatIgnoreList = {
 };
 
 //ignore EXACT words from double letters chaining into one
-var CyrLatIgnore_doubleletters = {	
-	"OVDE-UNETI-TAČNU-REČ-ZA-IGNORISANJE-SPAJANJA-DVA-SLOVA-U-JEDNO" : '',
-	"njemačku" : ''
-};
+let CyrLatIgnore_doubleLetters = [
+	'njemačku'
+];
 
 //ignore all words BASED on words in the list from double letters chaining into one
-var CyrLatIgnore_doubleletters_base = {
-	anjon		: '',
-	adjektiv	: '',
-	adjunkt		: '',
-	budzašto	: '',
-	vanjezič	: '',
-	injekt		: '',
-	injekc		: '',
-	konjug		: '',
-	konjunk		: '',
-	lindzi		: '',
-	nadždrel	: '',
-	nadžet		: '',
-	nadžive		: '',
-	nadživ		: '',
-	nadžnje		: '',
-	nadžup		: '',
-	nadzemn		: '',
-	nadzida		: '',
-	nadzira		: '',
-	nadzire		: '',
-	nadziru		: '',
-	nadzor		: '',
-	nadjača		: '',
-	nadjaha		: '',
-	odžali		: '',
-	odžari		: '',
-	odžvaka		: '',
-	odžubor		: '',
-	odžive		: '',
-	odživlj		: '',
-	odzvanja	: '',
-	odzvoni		: '',
-	odziv		: '',
-	odjav		: '',
-	odjaha		: '',
-	odjaš		: '',
-	odjeb		: '',
-	odjedri		: '',
-	odjezdi		: '',
-	odjedanput	: '',
-	odjedared	: '',
-	odjednom	: '',
-	odjek		: '',
-	odjeci		: '',
-	odjur		: '',
-	podžanr		: '',
-	podzadat	: '',
-	podzakon	: '',
-	podzemlj	: '',
-	podzemn		: '',
-	podzida		: '',
-	podznak		: '',
-	podznaci	: '',
-	podjar		: '',
-	podjamči	: '',
-	podjezič	: '',
-	podjednak	: '',
-	predživot	: '',
-	predželuda	: '',
-	predzadnj	: '',
-	predznak	: '',
-	predznanj	: '',
-	predznaci	: '',
-	predjel		: '',
-	tanjug		: ''
-};
+let CyrLatIgnore_doubleLettersBase = [
+	'anjon',
+	'adjektiv',
+	'adjunkt',
+	'budzašto',
+	'vanjezič',
+	'injekt',
+	'injekc',
+	'konjug',
+	'konjunk',
+	'lindzi',
+	'nadždrel',
+	'nadžet',
+	'nadžive',
+	'nadživ',
+	'nadžnje',
+	'nadžup',
+	'nadzemn',
+	'nadzida',
+	'nadzira',
+	'nadzire',
+	'nadziru',
+	'nadzor',
+	'nadjača',
+	'nadjaha',
+	'odžali',
+	'odžari',
+	'odžvaka',
+	'odžubor',
+	'odžive',
+	'odživlj',
+	'odzvanja',
+	'odzvoni',
+	'odziv',
+	'odjav',
+	'odjaha',
+	'odjaš',
+	'odjeb',
+	'odjedri',
+	'odjezdi',
+	'odjedanput',
+	'odjedared',
+	'odjednom',
+	'odjek',
+	'odjeci',
+	'odjur',
+	'podžanr',
+	'podzadat',
+	'podzakon',
+	'podzemlj',
+	'podzemn',
+	'podzida',
+	'podznak',
+	'podznaci',
+	'podjar',
+	'podjamči',
+	'podjezič',
+	'podjednak',
+	'predživot',
+	'predželuda',
+	'predzadnj',
+	'predznak',
+	'predznanj',
+	'predznaci',
+	'predjel',
+	'tanjug'
+];
 

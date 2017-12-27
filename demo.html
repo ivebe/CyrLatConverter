@@ -5,10 +5,9 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 		<title>Cyrilic to Latin and Latin to Cyrilic jQuery plugin demo</title>
-		
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-		<script type="text/javascript" src="cyrlatconverter_ignore_list_rs.js"></script> 
-		<script type="text/javascript" src="cyrlatconverter.js"></script>
+
+	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" src="cyrlatconverter.min.js"></script>
   </head>
 
 
@@ -168,13 +167,13 @@ do večnog boravišta.<br />
 
 
 $("body").CyrLatConverter({
-	button_cyr : 'cirilica',
-	button_lat : 'latinica',
-	button_default : 'default',
-	permalink_hash : "on",
+	onClickCyr: '#cirilica',
+    onClickLat: '#latinica',
+    onClickDefault: '#default',
+    usePermalinkHash: true,
 	
-	benchmark : "on",
-	benchmark_eval : "document.getElementById('exctime').innerHTML = '%s%';"
+	benchmark: true,
+	benchmarkEval: "document.getElementById('exctime').innerHTML = '%s%';"
 });	
 </script>
 

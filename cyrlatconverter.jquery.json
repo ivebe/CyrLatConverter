@@ -1,36 +1,36 @@
 {
-    "name": "cyrlatconverter",
-    "title": "CyrLatConverter - Cyrillic to Latin and Latin to Cyrillic",
-    "description": "CyrLatConverter is jQuery plugin for transliteration complete web site (or just part of it if you like) from Latin to Cyrillic and vice versa. Built with Serbian language as reference.",
-    "keywords": [
-        "Cirilica",
-        "Latinica",
-        "Konvertor",
-        "Converter",
-        "Transliteration"
-    ],
-    "version": "0.6.2",
-    "author": {
-        "name": "Danijel Petrovic",
-        "url": "http://www.ivebe.com"
-    },
-    "maintainers": [
-        {
-            "name": "Danijel Petrovic",
-            "email": "dan@ivebe.com",
-            "url": "http://www.ivebe.com"
-        }
-    ],
-    "licenses": [
-        {
-            "type": "apache",
-            "url": "http://www.apache.org/licenses/LICENSE-2.0"
-        }
-    ],    
-    "homepage": "http://www.ivebe.com/blog/cyrillic-to-latin-and-latin-to-cyrillic-jquery-plugin.html",
-    "docs": "http://www.ivebe.com/blog/cyrillic-to-latin-and-latin-to-cyrillic-jquery-plugin.html",
-    "download": "http://www.ivebe.com/blog/cyrillic-to-latin-and-latin-to-cyrillic-jquery-plugin.html",
-    "dependencies": {
-        "jquery": ">=1.5"
+  "name": "cyrlatconverter",
+  "title": "CyrLatConverter - Cyrillic to Latin and Latin to Cyrillic",
+  "description": "CyrLatConverter is jQuery plugin for transliteration complete web site (or just part of it if you like) from Latin to Cyrillic and vice versa. Built with Serbian language as reference.",
+  "keywords": [
+    "Cirilica",
+    "Latinica",
+    "Konvertor",
+    "Converter",
+    "Transliteration"
+  ],
+  "version": "0.7.0",
+  "author": {
+    "name": "Danijel Petrovic",
+    "url": "http://www.ivebe.com"
+  },
+  "maintainers": [
+    {
+      "name": "Danijel Petrovic",
+      "email": "dan@ivebe.com",
+      "url": "http://www.ivebe.com"
     }
+  ],
+  "licenses": [
+    {
+      "type": "apache",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "homepage": "http://www.ivebe.com/blog/cyrillic-to-latin-and-latin-to-cyrillic-jquery-plugin.html",
+  "docs": "http://www.ivebe.com/blog/cyrillic-to-latin-and-latin-to-cyrillic-jquery-plugin.html",
+  "download": "http://www.ivebe.com/blog/cyrillic-to-latin-and-latin-to-cyrillic-jquery-plugin.html",
+  "dependencies": {
+    "jquery": ">=1.5"
+  }
 }

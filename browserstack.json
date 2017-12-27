@@ -1,0 +1,25 @@
+{
+    "username": "%BROWSERSTACK_USERNAME%",
+    "key": "%BROWSERSTACK_KEY%",
+    "test_framework": "qunit",
+    "test_path": [
+        "test/qunit.html?v=3.2.1",
+        "test/qunit.html?v=3.0.0",
+        "test/qunit.html?v=2.2.4",
+        "test/qunit.html?v=2.0.0",
+        "test/qunit.html?v=1.12.4",
+        "test/qunit.html?v=1.9.0"
+    ],
+    "timeout": 180,
+    "browsers": [
+        "chrome_latest",
+        {
+            "browser":"firefox",
+            "browser_version": "57.0"
+        },
+        "safari_latest",
+        "ie_9",
+        "ie_10",
+        "ie_11"
+    ]
+}
