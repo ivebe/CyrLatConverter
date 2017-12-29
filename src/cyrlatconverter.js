@@ -349,157 +349,182 @@
 
         return ret;
     }
+
     /* End of splitWords */
 
-    function replace_L2C(txt) {
-        let value;
-        let chainedFlag;
-        let c2;
-        let validDoubleChain;
 
-        let words = splitWords(txt);
+    let FUNC = {
 
-        //iterate through all words
-        jQuery.each(words, function (i, w) {
+        recursiveCheckParent: function (el) {
 
-            //if list of words to ignore exist...
-            if ((typeof CyrLatIgnoreList !== 'undefined') && (w.toString().toLowerCase() in CyrLatIgnoreList))
-                words[i] = CyrLatIgnoreList[w.toString().toLowerCase()] === '' ? w : CyrLatIgnoreList[w.toString().toLowerCase()];
-            else {
-                
-                //check is this word in the CyrLatIgnore_doubleLetters list, if so, then it's not valid chain
-                validDoubleChain = !(
-                    typeof CyrLatIgnore_doubleLetters !== 'undefined' &&
-                    CyrLatIgnore_doubleLetters.indexOf( w.toString().toLowerCase() ) > -1
-                );
+            //TODO: move this to initialization, no reason to call it every time.
+            let parentClassToIgnore = config.parentClassToIgnore.split(',');
 
-                //iterate through list of base words to ignore
-                if (typeof CyrLatIgnore_doubleLettersBase !== 'undefined') {
-                    jQuery.each(CyrLatIgnore_doubleLettersBase, function (i, base) {
-                        if (w.toString().toLowerCase().indexOf(base) > -1) //ignore it
-                        {
-                            validDoubleChain = false;
-                            return false;
-                        }
-                    });
-                }
+            parentClassToIgnore.forEach(function(c, i) {
+                parentClassToIgnore[i] = c.trim();
+            });
 
-                //split words in letters...
-                value = w.split('');
+            //empty string, no need for further check
+            if(parentClassToIgnore.length === 1 && parentClassToIgnore[0] === '')
+                return false;
 
-                jQuery.each(value, function (i, c) {
-                    chainedFlag = false;
+            function scan(element) {
+                while (element.parentNode) {
 
-                    //if word should be double letters chained...
-                    if (Lat2Cyr_chained[c] && validDoubleChain) {
-                        c2 = value[i + 1];
-                        if (c2 && Lat2Cyr_chained[c][c2]) {
-                            value[i] = Lat2Cyr_chained[c][c2];
-                            value[i + 1] = '';
-                            chainedFlag = true;
-                        }
+                    if(element.className) {
+
+                        let elementClasses = element.className.split(' ');
+
+                        let parentClassesSet = new Set(parentClassToIgnore);
+                        let elementClassesSet = new Set(elementClasses);
+
+                        let intersection = new Set(
+                            [...parentClassesSet].filter(x => elementClassesSet.has(x))
+                        );
+
+                        if(intersection.size > 0)
+                            return true;
                     }
 
-                    if (!chainedFlag)
-                        value[i] = (Lat2Cyr[c] && Lat2Cyr[c] !== "") ? Lat2Cyr[c] : c;
-                });
-
-                words[i] = value.join('');
+                    element = element.parentNode;
+                }
+                return false;
             }
 
-        });
+            return scan(el);
+        },
 
-        return words.join(''); //join with NO space, as spaces are preserved in split function.
-    }
 
-    function replace_C2L(txt) {
+        replace_L2C: function (txt) {
+            let value;
+            let chainedFlag;
+            let c2;
+            let validDoubleChain;
 
-        let value;
-
-        //if list of words to ifnore exist...
-        if (typeof CyrLatIgnoreList !== 'undefined') {
             let words = splitWords(txt);
 
-            //console.log(words);
-            jQuery.each(words, function (i, w) {
-                if (!(w.toString().toLowerCase() in CyrLatIgnoreList)) //if word not set in ignore list
-                {
+            //iterate through all words
+            words.forEach(function (w, i) {
+
+                //if list of words to ignore exist...
+                if ((typeof CyrLatIgnoreList !== 'undefined') && (w.toString().toLowerCase() in CyrLatIgnoreList))
+                    words[i] = CyrLatIgnoreList[w.toString().toLowerCase()] === '' ? w : CyrLatIgnoreList[w.toString().toLowerCase()];
+                else {
+
+                    //check is this word in the CyrLatIgnore_doubleLetters list, if so, then it's not valid chain
+                    validDoubleChain = !(
+                        typeof CyrLatIgnore_doubleLetters !== 'undefined' &&
+                        CyrLatIgnore_doubleLetters.indexOf(w.toString().toLowerCase()) > -1
+                    );
+
+                    //iterate through list of base words to ignore
+                    if (typeof CyrLatIgnore_doubleLettersBase !== 'undefined') {
+                        CyrLatIgnore_doubleLettersBase.forEach(function(base) {
+                            if (w.toString().toLowerCase().indexOf(base) > -1) //ignore it
+                            {
+                                validDoubleChain = false;
+                                return false;
+                            }
+                        });
+                    }
+
+                    //split words in letters...
                     value = w.split('');
 
-                    jQuery.each(value, function (i, c) {
-                        value[i] = (Cyr2Lat[c] && Cyr2Lat[c] !== "") ? Cyr2Lat[c] : c;
+                    value.forEach(function (c, i) {
+                        chainedFlag = false;
+
+                        //if word should be double letters chained...
+                        if (Lat2Cyr_chained[c] && validDoubleChain) {
+                            c2 = value[i + 1];
+                            if (c2 && Lat2Cyr_chained[c][c2]) {
+                                value[i] = Lat2Cyr_chained[c][c2];
+                                value[i + 1] = '';
+                                chainedFlag = true;
+                            }
+                        }
+
+                        if (!chainedFlag)
+                            value[i] = (Lat2Cyr[c] && Lat2Cyr[c] !== "") ? Lat2Cyr[c] : c;
                     });
 
                     words[i] = value.join('');
                 }
-                else
-                    words[i] = CyrLatIgnoreList[w.toString().toLowerCase()] === '' ? w : CyrLatIgnoreList[w.toString().toLowerCase()];
+
             });
 
             return words.join(''); //join with NO space, as spaces are preserved in split function.
-        }
-        else // there's no ignore dictionary
-        {
-            value = txt.split('');
+        },
 
-            jQuery.each(value, function (i, c) {
-                value[i] = (Cyr2Lat[c] && Cyr2Lat[c] !== "") ? Cyr2Lat[c] : c;
+        replace_C2L: function (txt) {
+
+            let value;
+
+            //if list of words to ifnore exist...
+            if (typeof CyrLatIgnoreList !== 'undefined') {
+                let words = splitWords(txt);
+
+                //console.log(words);
+                words.forEach(function (w, i) {
+                    if (!(w.toString().toLowerCase() in CyrLatIgnoreList)) //if word not set in ignore list
+                    {
+                        value = w.split('');
+
+                        value.forEach(function (c, i) {
+                            value[i] = (Cyr2Lat[c] && Cyr2Lat[c] !== "") ? Cyr2Lat[c] : c;
+                        });
+
+                        words[i] = value.join('');
+                    }
+                    else
+                        words[i] = CyrLatIgnoreList[w.toString().toLowerCase()] === '' ? w : CyrLatIgnoreList[w.toString().toLowerCase()];
+                });
+
+                return words.join(''); //join with NO space, as spaces are preserved in split function.
+            }
+            else // there's no ignore dictionary
+            {
+                value = txt.split('');
+
+                value.forEach(function (c, i) {
+                    value[i] = (Cyr2Lat[c] && Cyr2Lat[c] !== "") ? Cyr2Lat[c] : c;
+                });
+
+                return value.join('');
+            }
+        },
+
+        convert_L2C: function (el) {
+
+            jQuery(el).wrapInner('<span id="CyrLatWrap" />');
+
+            jQuery(el).find(':not(iframe,script,style,pre,code,.CyrLatIgnore)').contents().filter(function () {
+
+                if (this.nodeType === 3) {
+                    if (!FUNC.recursiveCheckParent(this)) {
+                        if (typeof this.textContent !== 'undefined')
+                            this.textContent = FUNC.replace_L2C(this.textContent);
+                        else if (typeof this.innerText !== 'undefined')
+                            this.innerText = FUNC.replace_L2C(this.innerText);
+                        else if (typeof this.nodeValue !== 'undefined')
+                            this.nodeValue = FUNC.replace_L2C(this.nodeValue);
+
+                        return true;
+                    }
+                }
+                if (this.nodeType === 1 && typeof this.placeholder !== 'undefined') {
+                    if (!FUNC.recursiveCheckParent(this)) {
+                        this.placeholder = FUNC.replace_L2C(this.placeholder);
+
+                        return true;
+                    }
+                }
+                return false;
             });
 
-            return value.join('');
+            jQuery(el).find("#CyrLatWrap").contents().unwrap();
         }
-    }
-
-    function recursiveCheckParent(el) {
-
-        let parentClassToIgnore = config.parentClassToIgnore.split(',');
-
-        jQuery.each(parentClassToIgnore, function (i, c) {
-            parentClassToIgnore[i] = jQuery.trim(c);
-        });
-
-        function scan(element) {
-            while (element.parentNode) {
-                if (element.className && jQuery.inArray(element.className, parentClassToIgnore) >= 0)
-                    return true;
-
-                element = element.parentNode;
-            }
-            return false;
-        }
-
-        return scan(el);
-    }
-
-    function convert_L2C(el) {
-
-        jQuery(el).wrapInner('<span id="CyrLatWrap" />');
-
-        jQuery(el).find(':not(iframe,script,style,pre,code,.CyrLatIgnore)').contents().filter(function () {
-            if (this.nodeType === 3) {
-                if (!recursiveCheckParent(this)) {
-                    if (typeof this.textContent !== 'undefined')
-                        this.textContent = replace_L2C(this.textContent);
-                    else if (typeof this.innerText !== 'undefined')
-                        this.innerText = replace_L2C(this.innerText);
-                    else if (typeof this.nodeValue !== 'undefined')
-                        this.nodeValue = replace_L2C(this.nodeValue);
-
-                    return true;
-                }
-            }
-            if (this.nodeType === 1 && typeof this.placeholder !== 'undefined') {
-                if (!recursiveCheckParent(this)) {
-                    this.placeholder = replace_L2C(this.placeholder);
-
-                    return true;
-                }
-            }
-            return false;
-        });
-
-        jQuery(el).find("#CyrLatWrap").contents().unwrap();
-    }
+    };
 
     function convert_C2L(el) {
 
@@ -508,17 +533,17 @@
         jQuery(el).find(':not(iframe,script,style,pre,code,.CyrLatIgnore)').contents().filter(function () {
             if (this.nodeType === 3) {
                 if (typeof this.textContent !== 'undefined')
-                    this.textContent = replace_C2L(this.textContent);
+                    this.textContent = FUNC.replace_C2L(this.textContent);
                 else if (typeof this.innerText !== 'undefined')
-                    this.innerText = replace_C2L(this.innerText);
+                    this.innerText = FUNC.replace_C2L(this.innerText);
                 else if (typeof this.nodeValue !== 'undefined')
-                    this.nodeValue = replace_C2L(this.nodeValue);
+                    this.nodeValue = FUNC.replace_C2L(this.nodeValue);
 
                 return true;
             }
             if (this.nodeType === 1 && typeof this.placeholder !== 'undefined') {
-                if (!recursiveCheckParent(this)) {
-                    this.placeholder = replace_C2L(this.placeholder);
+                if (!FUNC.recursiveCheckParent(this)) {
+                    this.placeholder = FUNC.replace_C2L(this.placeholder);
 
                     return true;
                 }
@@ -589,7 +614,7 @@
                 start = new Date().getTime();
 
             jQuery(SELECTOR).each(function () {
-                convert_L2C(this);
+                FUNC.convert_L2C(this);
             });
             setCookie('L2C');
 
@@ -644,6 +669,9 @@
             }
             else
                 methods[method].call(this);
+        }
+        else if (method === 'FUNC') {
+            return FUNC[arguments[1]].apply(this, Array.prototype.slice.call(arguments, 2));
         }
         else {
             jQuery.error('Unknown call to ' + method);
