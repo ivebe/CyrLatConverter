@@ -12,14 +12,14 @@ It's easy to setup and use.
 ### Example
 <pre>
 let CyrLat = new CyrLatConverter('body').init({
-	onClickCyr: '#cirilica',
+    onClickCyr: '#cirilica',
     onClickLat: '#latinica',
     onClickDefault: '#default',
-	cookieDuration: 7,
+    cookieDuration: 7,
     usePermalinkHash: true,
     ignoreClasses: ['ignore'],
-	benchmark: true,
-	benchmarkEval: "document.getElementById('exctime').innerHTML = '%s%';"
+    benchmark: true,
+    benchmarkEval: "document.getElementById('exctime').innerHTML = '%s%';"
 });
 
 CyrLat.C2L();
