@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>QUnit Example</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.4.1.css">
+</head>
+<body>
+
+<ul>
+    <li>Пример реченице која је оригинално на ћирилици: Ана воли Милована.</li>
+    <li>Primer rečenice koja sadrži reči koje ne ulaze u transliteraciju: Ovaj <strong>plugin</strong> je pisan za <strong>jquery</strong>.</li>
+    <li>Primer rečenice koja sadrži nestandardne reči za ignorisanje dvoznaka: I onda je <i>Miljojko</i> otiš'o u <strong>Njemačku</strong>.</li>
+    <li>Primer rečenice koja sadrži reči za ignorisanje dvoznaka: <i>Djordju</i> je <strong>odzvonilo</strong> i on je <strong>odjurio</strong>.</li>
+</ul>
+
+<div>
+    Test ugnježdenih elemenata
+    <div>
+        Rečenica 1
+        <span>reč 1</span>
+        <span>reč 2</span>
+        <span>reč 3</span>
+    </div>
+</div>
+
+<div>
+    Test ugnježdenih elemenata sa klasom za ignorisanje
+    <div>
+        Rečenica 1
+        <span>reč 1</span>
+        <span class="CyrLatIgnore">reč 2</span>
+        <span>reč 3</span>
+    </div>
+</div>
+
+<div class="clc">
+    Test ugnježdenih elemenata sa klasom za ignorisanje svih elemenata
+    <div class="ignore">
+        Rečenica 1
+        <span>reč 1</span>
+        <span class="CyrLatIgnore">reč 2</span>
+        <span>reč 3</span>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/qunit/qunit-2.4.1.js"></script>
+<script>
+    //QUnit.config.autostart = true;
+</script>
+<script src="../cyrlatconverter.min.js"></script>
+<script src="tests.js"></script>
+</body>
+</html>

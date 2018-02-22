@@ -29,12 +29,11 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "browserstack-runner": "*",
     "grunt": "^1.0.1",
     "grunt-babel": "^7.0.0",
     "grunt-contrib-uglify": "^3.1.0",
-    "load-grunt-tasks": "^3.5.2",
-    "browserstack-runner": "*"
+    "load-grunt-tasks": "^3.5.2"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

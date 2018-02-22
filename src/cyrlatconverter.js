@@ -258,6 +258,7 @@
      * @constructor
      */
     function CyrLatConverter( selector ) {
+
         this.SELECTOR = selector;
     }
 
@@ -554,6 +555,8 @@
 
     let recursiveCheckParent = function(el) {
 
+        let $this = this;
+
         if(this.config.ignoreClasses.length === 0)
             return false;
 
@@ -564,17 +567,16 @@
 
                 if(element.className) {
 
-                    let elementClasses = element.className.split(' ');
+                    let ret = false;
 
-                    let parentClassesSet = new Set(ignoreClasses);
-                    let elementClassesSet = new Set(elementClasses);
+                    [].forEach.call(ignoreClasses, function(ignore){
+                        if(hasClass.call($this, element, ignore)) {
+                            ret = true;
+                            return;
+                        }
+                    });
 
-                    let intersection = new Set(
-                        [...parentClassesSet].filter(x => elementClassesSet.has(x))
-                    );
-
-                    if(intersection.size > 0)
-                        return true;
+                    return ret;
                 }
 
                 element = element.parentNode;
