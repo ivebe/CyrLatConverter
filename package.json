@@ -1,7 +1,7 @@
 {
   "name": "cyrlatconverter",
-  "version": "0.7.0",
-  "description": "Cyrillic to Latin and Latin to Cyrillic jQuery plugin",
+  "version": "1.0.0",
+  "description": "Cyrillic to Latin and Latin to Cyrillic javascript library.",
   "main": "cyrlatconverter.min.js",
   "scripts": {
     "test": "node browserstackRunner.js"
@@ -11,10 +11,14 @@
     "url": "git+https://github.com/ivebe/CyrLatConverter.git"
   },
   "keywords": [
-    "Cyrillic",
-    "Latin",
-    "jQuery",
-    "plugin"
+    "cyrillic",
+    "latin",
+    "transliteration",
+    "cirilica",
+    "latinica",
+    "cirilica u latinicu",
+    "latinica u cirilicu",
+    "Vanilla JS"
   ],
   "author": "Danijel Petrovic",
   "license": "Apache-2.0",
@@ -25,13 +29,11 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "browserstack-runner": "*",
     "grunt": "^1.0.1",
     "grunt-babel": "^7.0.0",
     "grunt-contrib-uglify": "^3.1.0",
-    "load-grunt-tasks": "^3.5.2",
-    "browserstack-runner": "*"
+    "load-grunt-tasks": "^3.5.2"
   },
-  "dependencies": {
-    "jquery": ">=1.5.0"
-  }
+  "dependencies": {}
 }

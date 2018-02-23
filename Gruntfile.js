@@ -13,7 +13,8 @@ module.exports = function(grunt){
             dist: {
                 files: {
                     'dist/cyrlatconverter.trans.js': 'src/cyrlatconverter.js',
-                    'dist/cyrlatconverter_ignore_list_rs.trans.js': 'src/cyrlatconverter_ignore_list_rs.js'
+                    'dist/cyrlatconverter_ignore_list_rs.trans.js': 'src/cyrlatconverter_ignore_list_rs.js',
+                    'dist/polyfills.trans.js': 'src/polyfills.js'
                 }
             }
         },
@@ -21,7 +22,7 @@ module.exports = function(grunt){
         uglify: {
             main: {
                 files: {
-                    "cyrlatconverter.min.js":["dist/cyrlatconverter.trans.js", "dist/cyrlatconverter_ignore_list_rs.trans.js"]
+                    "cyrlatconverter.min.js":["dist/polyfills.trans.js", "dist/cyrlatconverter.trans.js", "dist/cyrlatconverter_ignore_list_rs.trans.js"]
                 }
             },
             options: {
