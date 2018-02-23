@@ -1,28 +1,17 @@
 /*
- * Cyrillic to Latin and vice versa converter - ignore list
+ * Cyrillic to Latin and vice versa converter - list of words to ignore
  *
- * /// CyrLatIgnore: ///
- *     KEY: lowercase word to ignore, as in page it will ignore it regardless of is it lower, upper or mixed case.
- *  VALUE: if value is set, word will be replaced with the value, if value empty, original word with original case will be preserved
- *  
- * /// CyrLatIgnore_doubleLetters: ///
- * 	  VALUE: lowercase word to ignore double letters chaining. Ex. Nj => Њ by default, here you can specify words which ignore this behavior
+ * ************************************************************************************
+ * This software is free to use for personal, company internal or commercial purposes.
  *
- * /// CyrLatIgnore_doubleLettersBase: ///
- * 	  VALUE: lowercase BASE word to ignore double letters chaining. Ex. Nj => Њ by default, here you can specify words which ignore this behavior. All words that contains base word will be ignored from double letters chaining.
- *  
- * 
- * ************************************************************************************ 
- * This software is free to use for personal, company internal or commercial purposes. 
- *                                                                                      
- * You may not resell this software, and attribution to the author must remain.                  
- * Backlink is desirable, you can show backlink to the:                                  
- * www.ivebe.com                                                                        
- * or                                                                                   
- * www.ivebe.com/blog/cyrillic-to-latin-and-latin-to-cyrillic-jquery-plugin.html         
- * ************************************************************************************ 
- * 
- * Copyright [2017] [Danijel Petrovic]
+ * You may not resell this software, and attribution to the author must remain.
+ * Backlink is desirable, you can show backlink to the:
+ *   www.ivebe.com
+ * or
+ *   www.ivebe.com/blog/cyrillic-to-latin-and-latin-to-cyrillic-jquery-plugin.html
+ * ************************************************************************************
+ *
+ * Copyright [2018] [Danijel Petrovic]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,13 +24,11 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- * 
- * 
- * @author Danijel Petrovic 
- * @copyright Danijel Petrovic, www.ivebe.com, 2017
- * @version 0.7.0
+ *
+ * @author Danijel Petrovic
+ * @copyright Danijel Petrovic, www.ivebe.com, 2018
+ * @version 1.0.0
  */
-	
 	
 //ignore exact words, and if value is set, replace it with value
 let CyrLatIgnoreList = {

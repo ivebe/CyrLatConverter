@@ -7,12 +7,15 @@
 		<title>Cyrilic to Latin and Latin to Cyrilic jQuery plugin demo</title>
 
 	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script type="text/javascript" src="cyrlatconverter.min.js"></script>
+
+	  <!--<script type="text/javascript" src="src/cyrlatconverter_ignore_list_rs.js"></script>-->
+	  <script type="text/javascript" src="cyrlatconverter.min.js"></script>
   </head>
 
 
 <body>
 
+Пример реченице
 
 <div style="width: 100%; float:left; text-align: center;"> 
 	<button id="cirilica">Prikaži na ćirilici</button>
@@ -32,6 +35,42 @@
 	<li>Primer rečenice koja sadrži reči za ignorisanje dvoznaka: <i>Djordju</i> je <strong>odzvonilo</strong> i on je <strong>odjurio</strong>.</li>
 </ul>
 
+
+<div class="qq">
+	Пример реченице која је оригинално njemačku
+	<code>C# Пример</code>
+	<span class="ignore">
+		Пример реченице која је оригинално <pre>C++ Пример</pre>
+		<div>Пример реченице која је оригинално</div>
+		<div class="CyrLatIgnore">Пример реченице која је оригинално</div>
+
+	</span>
+</div>
+
+<hr>
+
+<div class="qq">
+	Пример реченице која је <span class="CyrLatIgnore">оригинално!!</span>
+	<code>C# Пример</code>
+	<span>
+		Пример реченице која је оригинално <pre>C++ Пример</pre>
+		<div>Пример реченице која је оригинално</div>
+		<div class="CyrLatIgnore">Пример реченице која је оригинално</div>
+
+	</span>
+</div>
+<hr>
+<div>
+	Пример реченице која је оригинално
+	<code>C# Пример</code>
+	<span>
+		Пример реченице која је оригинално <pre>C++ Пример</pre>
+		<div>Пример реченице која је оригинално</div>
+		<div class="CyrLatIgnore">Пример реченице која је оригинално</div>
+
+	</span>
+</div>
+<hr>
 
 <div style="width: 50%; float:left;"> 
 <p>
@@ -165,16 +204,19 @@ do večnog boravišta.<br />
 
 <script>
 
-
-$("body").CyrLatConverter({
+let CyrLat = new CyrLatConverter('body').init({
 	onClickCyr: '#cirilica',
     onClickLat: '#latinica',
     onClickDefault: '#default',
+	cookieDuration: 7,
     usePermalinkHash: true,
-	
+    ignoreClasses: ['ignore'],
 	benchmark: true,
 	benchmarkEval: "document.getElementById('exctime').innerHTML = '%s%';"
-});	
+});
+
+CyrLat.C2L();
+
 </script>
 
 </body>

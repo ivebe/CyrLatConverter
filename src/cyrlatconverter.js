@@ -2,13 +2,14 @@
  * Cyrillic to Latin and vice versa converter
  *
  * /// Example ///
- *
- *   jQuery("body").CyrLatConverter() : trigger last transliteration used, from the cookie
- *   jQuery("body").CyrLatConverter('default') : show original transliteration
- *   jQuery("body").CyrLatConverter('L2C') : trigger transliteration to Cyrillic
- *   jQuery("body").CyrLatConverter('C2L') : trigger transliteration to Latin
- *   jQuery("body").CyrLatConverter({options}) : initialize plugin with values from one of the options bellow
- *
+
+
+  var CyrLat = new CyrLatConverter('body').init({
+	onClickCyr: '#cirilica',
+    onClickLat: '#latinica',
+  });
+
+
  * ************************************************************************************
  * This software is free to use for personal, company internal or commercial purposes.
  *
@@ -19,7 +20,7 @@
  *   www.ivebe.com/blog/cyrillic-to-latin-and-latin-to-cyrillic-jquery-plugin.html
  * ************************************************************************************
  *
- * Copyright [2017] [Danijel Petrovic]
+ * Copyright [2018] [Danijel Petrovic]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,16 +35,27 @@
  * limitations under the License.
  *
  * @author Danijel Petrovic
- * @copyright Danijel Petrovic, www.ivebe.com, 2017
- * @version 0.7.0
+ * @copyright Danijel Petrovic, www.ivebe.com, 2018
+ * @version 1.0.0
  */
+( function( root, factory ) {
 
-'use strict';
+    let pluginName = 'CyrLatConverter';
 
-(function (jQuery) {
-    let config = {
-        cookieDuration: 7,
-        parentClassToIgnore: '',
+    if ( typeof define === 'function' && define.amd ) {
+        define( [], factory( pluginName ) );
+    } else if ( typeof exports === 'object' ) {
+        module.exports = factory( pluginName );
+    } else {
+        root[ pluginName ] = factory( pluginName );
+    }
+}( typeof self !== 'undefined' ? self : this, function() {
+
+    'use strict';
+
+    let defaults = {
+        cookieDuration: 0,
+        ignoreClasses: [],
         permalinkHashLat: "#lat",
         permalinkHashCyr: "#cyr",
         usePermalinkHash: false,
@@ -57,6 +69,7 @@
 
     let SELECTOR = 'body';
     let start;
+    let initBenchmarkActive = false;
 
     let Lat2Cyr = {
         "a": "а",
@@ -222,16 +235,201 @@
         }
     };
 
-    function hashCallback() {
+    /**
+     * Merge defaults with user options
+     */
+    let extend = function( target, options ) {
+        let prop, extended = {};
+        for ( prop in defaults ) {
+            if ( Object.prototype.hasOwnProperty.call( defaults, prop ) ) {
+                extended[ prop ] = defaults[ prop ];
+            }
+        }
+        for ( prop in options ) {
+            if ( Object.prototype.hasOwnProperty.call( options, prop ) ) {
+                extended[ prop ] = options[ prop ];
+            }
+        }
+        return extended;
+    };
 
-        if (window.location.hash === config.permalinkHashLat)
-            methods['C2L'].call(this);
+    /**
+     * Plugin Object
+     * @constructor
+     */
+    function CyrLatConverter( selector ) {
 
-        if (window.location.hash === config.permalinkHashCyr)
-            methods['L2C'].call(this);
+        this.SELECTOR = selector;
     }
 
-    function initHash() {
+    /**
+     * Plugin prototype
+     * @public
+     * @constructor
+     */
+    CyrLatConverter.prototype = {
+
+        init: function(config) {
+
+            this.config = extend( defaults, config );
+            let $this = this;
+
+
+            if(!Array.isArray(this.config.ignoreClasses))
+                console.error('Parameter "ignoreClasses" must be an array of classes to ignore.');
+
+
+            if (this.config.onClickCyr !== '') {
+                document.querySelectorAll(this.config.onClickCyr).forEach(function(el){
+                    el.addEventListener('click', function(){
+                        $this.L2C($this.SELECTOR);
+                    }, false)
+                });
+            }
+
+            if (this.config.onClickLat !== '') {
+                document.querySelectorAll(this.config.onClickLat).forEach(function(el){
+                    el.addEventListener('click', function(){
+                        $this.C2L($this.SELECTOR);
+                    }, false)
+                });
+            }
+
+            if (this.config.onClickDefault !== '') {
+                document.querySelectorAll(this.config.onClickDefault).forEach(function(el){
+                    el.addEventListener('click', function(){
+                        $this.Default($this.SELECTOR);
+                    }, false)
+                });
+            }
+
+            //start benchmark
+            if (this.config.benchmark === true) {
+                start = new Date().getTime();
+                initBenchmarkActive = true;
+            }
+
+            let hash_set = false;
+            if (this.config.usePermalinkHash === true) {
+                hash_set = initHash.call(this); //return hash translation status (translated or not)
+            }
+
+            let direction = '';
+            if (this.config.cookieDuration > 0)
+                direction = getCookie.call(this);
+
+            if (hash_set === false && direction === "L2C") {
+                this.L2C(SELECTOR);
+            }
+
+            if (hash_set === false && direction === "C2L") {
+                this.C2L(SELECTOR);
+            }
+
+            //end benchmark
+            if (this.config.benchmark === true) {
+                eval(this.config.benchmarkEval.replace('%s%', (new Date().getTime() - start) + 'ms'));
+                initBenchmarkActive = false;
+            }
+
+            return $this;
+        },
+
+        C2L: function( selector ) {
+
+            if(typeof(selector) !== 'undefined')
+                this.SELECTOR = selector;
+
+            let $this = this;
+
+            //start benchmark
+            if (this.config.benchmark === true && !initBenchmarkActive)
+                start = new Date().getTime();
+
+            document.querySelectorAll(this.SELECTOR).forEach(function(el){
+                convert_C2L.call($this, el);
+            });
+
+            if (this.config.cookieDuration > 0)
+                setCookie.call($this, 'C2L');
+
+            //end benchmark
+            if (this.config.benchmark === true && !initBenchmarkActive)
+                eval(this.config.benchmarkEval.replace('%s%', (new Date().getTime() - start) + 'ms'));
+
+            if (typeof(this.config.onC2L) !== 'undefined')
+                this.config.onC2L.call();
+
+            return $this;
+        },
+
+        L2C: function( selector ) {
+
+            if(typeof(selector) !== 'undefined')
+                this.SELECTOR = selector;
+
+            let $this = this;
+
+            //start benchmark
+            if (this.config.benchmark === true && !initBenchmarkActive)
+                start = new Date().getTime();
+
+            document.querySelectorAll(this.SELECTOR).forEach(function(el){
+                convert_L2C.call($this, el);
+            });
+
+            if (this.config.cookieDuration > 0)
+                setCookie.call($this, 'L2C');
+
+            //end benchmark
+            if (this.config.benchmark === true && !initBenchmarkActive)
+                eval(this.config.benchmarkEval.replace('%s%', (new Date().getTime() - start) + 'ms'));
+
+            if (typeof(this.config.onC2L) !== 'undefined')
+                this.config.onL2C.call();
+
+            return $this;
+        },
+
+        Default: function() {
+
+            if (this.config.cookieDuration > 0)
+                setCookie('default'); //set to default, so no C2L or L2C will be called
+
+            if (this.config.usePermalinkHash === true)
+                window.location.hash = '';
+
+            location.reload(true); //reload from server, not cache
+
+            return this;
+        },
+
+        setSelector(selector) {
+            this.SELECTOR = selector;
+        }
+    };
+
+    /**
+     * Helper Functions
+     */
+    let hasClass = function(el, cssClass) {
+        return el.className && new RegExp("(\\s|^)" + cssClass + "(\\s|$)").test(el.className);
+    };
+
+    let hashCallback = function() {
+
+        console.log(this);
+
+        if (window.location.hash === this.config.permalinkHashLat)
+            this.C2L.call(this);
+
+        if (window.location.hash === this.config.permalinkHashCyr)
+            this.L2C.call(this);
+    };
+
+    let initHash = function() {
+
+        let $this = this;
 
         if (!("onhashchange" in window)) {
 
@@ -240,33 +438,38 @@
                 let newHref = location.href;
                 if (oldHref !== newHref) {
                     oldHref = newHref;
-                    hashCallback();
+                    hashCallback.call(this);
                 }
             }, 100);
         } else if (window.addEventListener) {
-            window.addEventListener("hashchange", hashCallback, false);
+            window.addEventListener("hashchange", function(){
+                hashCallback.call($this);
+            }, false);
         }
         else if (window.attachEvent) {
-            window.attachEvent("onhashchange", hashCallback);
+            window.attachEvent("onhashchange", function(){
+                hashCallback.call($this);
+            });
         }
 
-        hashCallback();
+        hashCallback.call(this);
 
         //if permalink is already set on page load (init hash function) we will return true so no translation is called from cookie.
-        return window.location.hash === config.permalinkHashLat || window.location.hash === config.permalinkHashCyr
-    }
+        return window.location.hash === this.config.permalinkHashLat || window.location.hash === this.config.permalinkHashCyr
+    };
 
-    function setCookie(value) {
+    let setCookie = function(value) {
+
         let expires = "; ";
-        if (config.cookieDuration) {
+        if (this.config.cookieDuration) {
             let date = new Date();
-            date.setDate(date.getDate() + config.cookieDuration);
+            date.setDate(date.getDate() + this.config.cookieDuration);
             expires = "; expires=" + date.toUTCString() + "; ";
         }
         document.cookie = "CyrLatConverterSelected=" + value + expires + "path=/";
-    }
+    };
 
-    function getCookie() {
+    let getCookie = function() {
         let name = "CyrLatConverterSelected=";
         let c_arr = document.cookie.split(';');
         for (let i = 0; i < c_arr.length; i++) {
@@ -278,18 +481,18 @@
                 return c.substring(name.length, c.length);
         }
         return null;
-    }
+    };
 
     /**
      * splitWords
      *
      * Cross browser function to split words and preserve delimiters.
      */
-    function splitWords(str) {
+    let splitWords = function(str) {
 
         let pattern;
 
-        if (config.ignoreListIncludeUnicode === true) //unicode for all cyrillic letters, and čČćĆžŽšŠđĐ
+        if (this.config.ignoreListIncludeUnicode === true) //unicode for all cyrillic letters, and čČćĆžŽšŠđĐ
             pattern = "[^0-9a-zA-Z\u0400-\u04FF_\u010D\u010C\u0107\u0106\u017E\u017D\u0161\u0160\u0111\u0110]+";
         else //unicode for čČćĆžŽšŠđĐ
             pattern = "[^0-9a-zA-Z_\u010D\u010C\u0107\u0106\u017E\u017D\u0161\u0160\u0111\u0110]+";
@@ -348,34 +551,67 @@
         }
 
         return ret;
-    }
-    /* End of splitWords */
+    };
 
-    function replace_L2C(txt) {
+    let recursiveCheckParent = function(el) {
+
+        let $this = this;
+
+        if(this.config.ignoreClasses.length === 0)
+            return false;
+
+        let ignoreClasses = this.config.ignoreClasses;
+
+        function scan(element) {
+            while (element.parentNode) {
+
+                if(element.className) {
+
+                    let ret = false;
+
+                    [].forEach.call(ignoreClasses, function(ignore){
+                        if(hasClass.call($this, element, ignore)) {
+                            ret = true;
+                            return;
+                        }
+                    });
+
+                    return ret;
+                }
+
+                element = element.parentNode;
+            }
+            return false;
+        }
+
+        return scan(el);
+    };
+
+    let replace_L2C = function(txt) {
         let value;
         let chainedFlag;
         let c2;
         let validDoubleChain;
 
-        let words = splitWords(txt);
+        let words = splitWords.call(this, txt);
 
         //iterate through all words
-        jQuery.each(words, function (i, w) {
+        words.forEach(function (w, i) {
 
             //if list of words to ignore exist...
             if ((typeof CyrLatIgnoreList !== 'undefined') && (w.toString().toLowerCase() in CyrLatIgnoreList))
                 words[i] = CyrLatIgnoreList[w.toString().toLowerCase()] === '' ? w : CyrLatIgnoreList[w.toString().toLowerCase()];
             else {
-                
+
                 //check is this word in the CyrLatIgnore_doubleLetters list, if so, then it's not valid chain
                 validDoubleChain = !(
                     typeof CyrLatIgnore_doubleLetters !== 'undefined' &&
-                    CyrLatIgnore_doubleLetters.indexOf( w.toString().toLowerCase() ) > -1
+                    CyrLatIgnore_doubleLetters.indexOf(w.toString().toLowerCase()) > -1
                 );
 
                 //iterate through list of base words to ignore
                 if (typeof CyrLatIgnore_doubleLettersBase !== 'undefined') {
-                    jQuery.each(CyrLatIgnore_doubleLettersBase, function (i, base) {
+                    CyrLatIgnore_doubleLettersBase.forEach(function(base) {
                         if (w.toString().toLowerCase().indexOf(base) > -1) //ignore it
                         {
                             validDoubleChain = false;
@@ -387,7 +623,7 @@
                 //split words in letters...
                 value = w.split('');
 
-                jQuery.each(value, function (i, c) {
+                value.forEach(function (c, i) {
                     chainedFlag = false;
 
                     //if word should be double letters chained...
@@ -410,23 +646,23 @@
         });
 
         return words.join(''); //join with NO space, as spaces are preserved in split function.
-    }
+    };
 
-    function replace_C2L(txt) {
+    let replace_C2L = function(txt) {
 
         let value;
 
         //if list of words to ifnore exist...
         if (typeof CyrLatIgnoreList !== 'undefined') {
-            let words = splitWords(txt);
+            let words = splitWords.call(this, txt);
 
             //console.log(words);
-            jQuery.each(words, function (i, w) {
+            words.forEach(function (w, i) {
                 if (!(w.toString().toLowerCase() in CyrLatIgnoreList)) //if word not set in ignore list
                 {
                     value = w.split('');
 
-                    jQuery.each(value, function (i, c) {
+                    value.forEach(function (c, i) {
                         value[i] = (Cyr2Lat[c] && Cyr2Lat[c] !== "") ? Cyr2Lat[c] : c;
                     });
 
@@ -442,213 +678,91 @@
         {
             value = txt.split('');
 
-            jQuery.each(value, function (i, c) {
+            value.forEach(function (c, i) {
                 value[i] = (Cyr2Lat[c] && Cyr2Lat[c] !== "") ? Cyr2Lat[c] : c;
             });
 
             return value.join('');
         }
-    }
+    };
 
-    function recursiveCheckParent(el) {
+    let convert_L2C = function(el) {
 
-        let parentClassToIgnore = config.parentClassToIgnore.split(',');
+        let $this = this;
 
-        jQuery.each(parentClassToIgnore, function (i, c) {
-            parentClassToIgnore[i] = jQuery.trim(c);
-        });
+        el.childNodes.forEach(function (node) {
 
-        function scan(element) {
-            while (element.parentNode) {
-                if (element.className && jQuery.inArray(element.className, parentClassToIgnore) >= 0)
-                    return true;
+            if( ['iframe', 'script', 'style', 'code', 'pre'].includes( node.nodeName.toLowerCase() ) )
+                return;
 
-                element = element.parentNode;
-            }
-            return false;
-        }
+            if( node.nodeType === 1 && hasClass.call($this, node, 'CyrLatIgnore') )
+                return;
 
-        return scan(el);
-    }
-
-    function convert_L2C(el) {
-
-        jQuery(el).wrapInner('<span id="CyrLatWrap" />');
-
-        jQuery(el).find(':not(iframe,script,style,pre,code,.CyrLatIgnore)').contents().filter(function () {
-            if (this.nodeType === 3) {
-                if (!recursiveCheckParent(this)) {
-                    if (typeof this.textContent !== 'undefined')
-                        this.textContent = replace_L2C(this.textContent);
+            if (node.nodeType === 3) {
+                if (!recursiveCheckParent.call($this, node)) {
+                    if (typeof node.textContent !== 'undefined')
+                        node.textContent = replace_L2C.call($this, node.textContent);
                     else if (typeof this.innerText !== 'undefined')
-                        this.innerText = replace_L2C(this.innerText);
+                        node.innerText = replace_L2C.call($this, node.innerText);
                     else if (typeof this.nodeValue !== 'undefined')
-                        this.nodeValue = replace_L2C(this.nodeValue);
+                        node.nodeValue = replace_L2C.call($this, node.nodeValue);
 
                     return true;
                 }
             }
-            if (this.nodeType === 1 && typeof this.placeholder !== 'undefined') {
-                if (!recursiveCheckParent(this)) {
-                    this.placeholder = replace_L2C(this.placeholder);
 
-                    return true;
+            if (node.nodeType === 1) {
+
+                if(typeof node.placeholder !== 'undefined' && !recursiveCheckParent.call($this, node)) {
+                    node.placeholder = replace_L2C.call($this, node.placeholder);
                 }
-            }
-            return false;
-        });
 
-        jQuery(el).find("#CyrLatWrap").contents().unwrap();
-    }
-
-    function convert_C2L(el) {
-
-        jQuery(el).wrapInner('<span id="CyrLatWrap" />');
-
-        jQuery(el).find(':not(iframe,script,style,pre,code,.CyrLatIgnore)').contents().filter(function () {
-            if (this.nodeType === 3) {
-                if (typeof this.textContent !== 'undefined')
-                    this.textContent = replace_C2L(this.textContent);
-                else if (typeof this.innerText !== 'undefined')
-                    this.innerText = replace_C2L(this.innerText);
-                else if (typeof this.nodeValue !== 'undefined')
-                    this.nodeValue = replace_C2L(this.nodeValue);
-
+                convert_L2C.call($this, node);
                 return true;
             }
-            if (this.nodeType === 1 && typeof this.placeholder !== 'undefined') {
-                if (!recursiveCheckParent(this)) {
-                    this.placeholder = replace_C2L(this.placeholder);
+
+            return false;
+        });
+    };
+
+    let convert_C2L = function(el) {
+
+        let $this = this;
+
+        el.childNodes.forEach(function (node) {
+
+            if( ['iframe', 'script', 'style', 'code', 'pre'].includes( node.nodeName.toLowerCase() ) )
+                return;
+
+            if( node.nodeType === 1 && hasClass.call($this, node, 'CyrLatIgnore') )
+                return;
+
+            if (node.nodeType === 3) {
+                if (!recursiveCheckParent.call($this, node)) {
+                    if (typeof node.textContent !== 'undefined')
+                        node.textContent = replace_C2L.call($this, node.textContent);
+                    else if (typeof node.innerText !== 'undefined')
+                        this.innerText = replace_C2L.call($this, node.innerText);
+                    else if (typeof node.nodeValue !== 'undefined')
+                        node.nodeValue = replace_C2L.call($this, node.nodeValue);
 
                     return true;
                 }
             }
+
+            if (node.nodeType === 1) {
+
+                if(typeof node.placeholder !== 'undefined' && !recursiveCheckParent.call($this, node)) {
+                    node.placeholder = replace_C2L.call($this, node.placeholder);
+                }
+
+                convert_C2L.call($this, node);
+                return true;
+            }
+
             return false;
         });
-
-        jQuery(el).find("#CyrLatWrap").contents().unwrap();
-    }
-
-    let initBenchmarkActive = false;
-    let methods = {
-        init: function (customSettings) {
-
-            if (customSettings) {
-                jQuery.extend(config, customSettings);
-            }
-
-            if (config.onClickCyr !== '') {
-                jQuery(config.onClickCyr).click(function () {
-                    jQuery(SELECTOR).CyrLatConverter('L2C');
-                });
-            }
-
-            if (config.onClickLat !== '') {
-                jQuery(config.onClickLat).click(function () {
-                    jQuery(SELECTOR).CyrLatConverter('C2L');
-                });
-            }
-
-            if (config.onClickDefault !== '') {
-                jQuery(config.onClickDefault).click(function () {
-                    jQuery(SELECTOR).CyrLatConverter('default');
-                });
-            }
-
-            //start benchmark
-            if (config.benchmark === true) {
-                start = new Date().getTime();
-                initBenchmarkActive = true;
-            }
-
-            let hash_set = false;
-            if (config.usePermalinkHash === true) {
-                hash_set = initHash(); //return hash translation status (translated or not)
-            }
-
-            let direction = '';
-            if (config.cookieDuration > 0)
-                direction = getCookie();
-
-            if (hash_set === false && (direction === "L2C" || direction === "C2L")) {
-                methods[direction].call(this);
-            }
-
-            //end benchmark
-            if (config.benchmark === true) {
-                eval(config.benchmarkEval.replace('%s%', (new Date().getTime() - start) + 'ms'));
-                initBenchmarkActive = false;
-            }
-
-            return true;
-        },
-        L2C: function () {
-
-            //start benchmark
-            if (config.benchmark === true && !initBenchmarkActive)
-                start = new Date().getTime();
-
-            jQuery(SELECTOR).each(function () {
-                convert_L2C(this);
-            });
-            setCookie('L2C');
-
-            //end benchmark
-            if (config.benchmark === true && !initBenchmarkActive)
-                eval(config.benchmarkEval.replace('%s%', (new Date().getTime() - start) + 'ms'));
-
-            if (typeof(config.onL2C) !== 'undefined') {
-                config.onL2C.call();
-            }
-        },
-        C2L: function () {
-
-            //start benchmark
-            if (config.benchmark === true && !initBenchmarkActive)
-                start = new Date().getTime();
-
-            jQuery(SELECTOR).each(function () {
-                convert_C2L(this);
-            });
-            setCookie('C2L');
-
-            //end benchmark
-            if (config.benchmark === true && !initBenchmarkActive)
-                eval(config.benchmarkEval.replace('%s%', (new Date().getTime() - start) + 'ms'));
-
-            if (typeof(config.onC2L) !== 'undefined')
-                config.onC2L.call();
-        }
     };
 
-    jQuery.fn.CyrLatConverter = function (method) {
-
-        SELECTOR = this;
-
-        if (typeof method === 'undefined' || typeof method === 'object' || !method) {
-            methods.init.apply(this, arguments);
-        }
-        else if (method.toString().toLowerCase() === 'default') {
-            setCookie('default'); //set to default, so no C2L or L2C will be called
-            if (config.usePermalinkHash === true)
-                window.location.hash = '';
-            location.reload(true); //reload from server, not cache
-            return;
-        }
-        else if (methods[method]) {
-            if (config.usePermalinkHash === true) {
-                if (method.toString().toUpperCase() === 'L2C')
-                    window.location.hash = config.permalinkHashCyr;
-                else if (method.toString().toUpperCase() === 'C2L')
-                    window.location.hash = config.permalinkHashLat;
-            }
-            else
-                methods[method].call(this);
-        }
-        else {
-            jQuery.error('Unknown call to ' + method);
-        }
-
-        return this;
-    };
-})(jQuery);
+    return CyrLatConverter;
+}));
