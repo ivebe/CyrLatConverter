@@ -1,7 +1,7 @@
 # CyrLatConverter
 
 [![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=NWw2ZTZLNnNCamtSWStPb1djRHlLKzJLcDJ4NlptTmNIbnV3d2pycDZ0TT0tLWJnL29ad0txanVaMXU4VjB2TThvN3c9PQ==--8218dec8c12a941e07abdcf8785af2606bb938a8)](https://www.browserstack.com/automate/public-build/NWw2ZTZLNnNCamtSWStPb1djRHlLKzJLcDJ4NlptTmNIbnV3d2pycDZ0TT0tLWJnL29ad0txanVaMXU4VjB2TThvN3c9PQ==--8218dec8c12a941e07abdcf8785af2606bb938a8)
-[![Build Status](https://travis-ci.org/ivebe/CyrLatConverter.svg?branch=feature-use-es6-instead-of-jquery)](https://travis-ci.org/ivebe/CyrLatConverter)
+[![Build Status](https://travis-ci.org/ivebe/CyrLatConverter.svg?branch=dev)](https://travis-ci.org/ivebe/CyrLatConverter)
 [![GitHub version](https://badge.fury.io/gh/ivebe%2FCyrLatConverter.svg)](https://badge.fury.io/gh/ivebe%2FCyrLatConverter)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![VanillaJS](https://img.shields.io/badge/VanillaJS-no--dependencies-green.svg)]()
@@ -125,15 +125,15 @@ Migration should be done with keeping in mind those changed features:
 - button_cyr (now onClickCyr) do not have to be ID anymore, it accept any selector. Also onClickLat does the same.
 
 ### Changelog
-**1.0.0** - Major rewrite, removed jQuery dependency and made library with pure JavaScript.
-**0.7.0** - Major rewrite, code refactored to satisfy ES6. Added BrowserStack QUnit tests. List of words from dictionary minimised into a single plugin file. Removed backward compatibility calls. (IMPORTANT: if you are migrating from older versions check migration guide. For all others this is the recommended version.)
-**0.6.2** - Added placeholder text to transliteration. Removed jQuery library from source. Removed version number from filename.
-**0.6.0** - Added flexibile selector so plugin can be called as $("body").CyrLatConverter({...})
-**0.5.4** - added onC2L and onL2C events, fixed adding button's id in plugin options
-**0.5.3** - changed version from 0.1.5 to 0.5.3 and code published on GitHub
-**0.1.5** - added dictionary for ignoring words from double letter chaining
-**0.1.4** - added external configuration file, minor bug fix
-**0.1.3** - added option for permalink over hash, bug fix
-**0.1.2** - code rewritten
-**0.1.1** - bug fix
-**0.1.0** - plugin published on www.ivebe.com
+- **1.0.0** - Major rewrite, removed jQuery dependency and made library with pure JavaScript.
+- **0.7.0** - Major rewrite, code refactored to satisfy ES6. Added BrowserStack QUnit tests. List of words from dictionary minimised into a single plugin file. Removed backward compatibility calls. (IMPORTANT: if you are migrating from older versions check migration guide. For all others this is the recommended version.)
+- **0.6.2** - Added placeholder text to transliteration. Removed jQuery library from source. Removed version number from filename.
+- **0.6.0** - Added flexibile selector so plugin can be called as $("body").CyrLatConverter({...})
+- **0.5.4** - added onC2L and onL2C events, fixed adding button's id in plugin options
+- **0.5.3** - changed version from 0.1.5 to 0.5.3 and code published on GitHub
+- **0.1.5** - added dictionary for ignoring words from double letter chaining
+- **0.1.4** - added external configuration file, minor bug fix
+- **0.1.3** - added option for permalink over hash, bug fix
+- **0.1.2** - code rewritten
+- **0.1.1** - bug fix
+- **0.1.0** - plugin published on www.ivebe.com
