@@ -29,6 +29,8 @@
 
         CyrLat.L2C();
 
+        assert.ok( 1 == 2, "I want to fail!");
+
         assert.ok( document.querySelector(".CyrLatIgnore").textContent === "reč 2", ".CyrLatIgnore test failed" );
         assert.ok( document.getElementsByClassName('clc')[0].textContent.replace(/(\r\n|\n|\r)/gm,"") === "    Тест угњеждених елемената са класом за игнорисање свих елемената            Rečenica 1        reč 1        reč 2        reč 3    ", "Nested elements test failed" );
     });
