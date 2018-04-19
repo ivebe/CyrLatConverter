@@ -13,5 +13,6 @@
         "ie_9",
         "ie_10",
         "ie_11"
-    ]
+    ],
+    "exit_with_fail": true
 }
