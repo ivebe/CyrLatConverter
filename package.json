@@ -4,7 +4,7 @@
   "description": "Cyrillic to Latin and Latin to Cyrillic javascript library.",
   "main": "cyrlatconverter.min.js",
   "scripts": {
-    "test": "node browserstackRunner.js"
+    "test": "./node_modules/.bin/browserstack-runner"
   },
   "repository": {
     "type": "git",
