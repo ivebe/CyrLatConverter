@@ -125,6 +125,7 @@ Migration should be done with keeping in mind those changed features:
 - button_cyr (now onClickCyr) do not have to be ID anymore, it accept any selector. Also onClickLat does the same.
 
 ### Changelog
+- **1.0.1** - Minor modifications
 - **1.0.0** - Major rewrite, removed jQuery dependency and made library with pure JavaScript.
 - **0.7.0** - Major rewrite, code refactored to satisfy ES6. Added BrowserStack QUnit tests. List of words from dictionary minimised into a single plugin file. Removed backward compatibility calls. (IMPORTANT: if you are migrating from older versions check migration guide. For all others this is the recommended version.)
 - **0.6.2** - Added placeholder text to transliteration. Removed jQuery library from source. Removed version number from filename.
