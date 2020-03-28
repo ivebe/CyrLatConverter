@@ -1,6 +1,6 @@
 {
   "name": "cyrlatconverter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Cyrillic to Latin and Latin to Cyrillic javascript library.",
   "main": "cyrlatconverter.min.js",
   "scripts": {
