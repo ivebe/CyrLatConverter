@@ -79,6 +79,12 @@ Or you can trigger action outside of the library. You can even use jQuery if you
 #### Change selector without calling transliteration
 If for any reason you whish to change selector for the DOM you wish to transliterate, you can do so by calling `setSelector` function, and it's only parameter is the new selector string.
 
+#### Transliterate just plain text value, no DOM object
+If you wish to transliterate just some text value instead of DOM object, you can call `getL2C` or `getC2L` methods. 
+
+    CyrLat.getC2L("Sample text in cyrillic");
+    CyrLat.getL2C("Sample text in latin");
+
 #### Show default layout
 You could simply refresh the page, but if you are using hashtags, or cookie to remember last transliteration, better option is calling `Default` method which will handle cookie and hashtag for you and refresh the page.
 

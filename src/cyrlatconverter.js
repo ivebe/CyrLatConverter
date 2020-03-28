@@ -404,6 +404,14 @@
             return this;
         },
 
+        getL2C( value ) {
+            return replace_L2C.call( this, value );
+        },
+
+        getC2L( value ) {
+            return replace_C2L.call( this, value );
+        },
+
         setSelector(selector) {
             this.SELECTOR = selector;
         }

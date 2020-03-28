@@ -17,18 +17,18 @@
 
 Пример реченице
 
-<div style="width: 100%; float:left; text-align: center;"> 
+<div style="width: 100%; float:left; text-align: center;">
 	<button id="cirilica">Prikaži na ćirilici</button>
 	<button id="latinica">Prikaži na latinici</button>
 	<button id="default">Prikaži na default</button>
 	&nbsp; Vreme izvršavanja skripte: <span id="exctime">0</span>.<br />
 	Pokretanje transliteracije pomoću <span class="CyrLatIgnore">hash</span> taga u linku.
 	<a href="#cyr">cyr</a>
-	<a href="#lat">lat</a> 
+	<a href="#lat">lat</a>
 </div>
 <br /><br />
 
-<ul>	
+<ul>
 	<li>Пример реченице која је оригинално на ћирилици: Ана воли Милована.</li>
 	<li>Primer rečenice koja sadrži reči koje ne ulaze u transliteraciju: Ovaj <strong>plugin</strong> je pisan za <strong>jquery</strong>.</li>
 	<li>Primer rečenice koja sadrži nestandardne reči za ignorisanje dvoznaka: I onda je <i>Miljojko</i> otiš'o u <strong>Njemačku</strong>.</li>
@@ -72,7 +72,7 @@
 </div>
 <hr>
 
-<div style="width: 50%; float:left;"> 
+<div style="width: 50%; float:left;">
 <p>
 Било је то у некој земљи сељака<br />
 на брдовитом Балкану,<br />
@@ -137,7 +137,7 @@
 </div>
 
 <div style="width: 50%; float:left;">
-<p>	
+<p>
 Bilo je to u nekoj zemlji seljaka<br />
 na brdovitom Balkanu,<br />
 umrla je mučeničkom smrću<br />
@@ -197,7 +197,7 @@ kao da smrt nije ništa.<br />
 Drugova redovi celi<br />
 istog časa se uzneli<br />
 do večnog boravišta.<br />
-</p>	
+</p>
 </div>
 
 
@@ -216,6 +216,9 @@ let CyrLat = new CyrLatConverter('body').init({
 });
 
 CyrLat.C2L();
+
+console.log( "Primer C2L: " + CyrLat.getC2L("Било је то у некој земљи сељака") );
+console.log( "Primer L2C: " + CyrLat.getL2C("na brdovitom Balkanu") );
 
 </script>
 
