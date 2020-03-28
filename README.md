@@ -82,6 +82,9 @@ If for any reason you whish to change selector for the DOM you wish to translite
 #### Transliterate just plain text value, no DOM object
 If you wish to transliterate just some text value instead of DOM object, you can call `getL2C` or `getC2L` methods. 
 
+    //Make sure you initialized CyrLat object first, 
+    //for example: var CyrLat = new CyrLatConverter().init();
+    
     CyrLat.getC2L("Sample text in cyrillic");
     CyrLat.getL2C("Sample text in latin");
 
