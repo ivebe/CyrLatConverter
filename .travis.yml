@@ -1,3 +1,5 @@
+language: node_js
+
 addons:
   browserstack:
     username: "cyrlat1haGtQ"
