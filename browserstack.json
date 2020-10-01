@@ -5,12 +5,11 @@
     "test_path": [
         "test/qunit.html"
     ],
-    "timeout": 180,
+    "timeout": 30,
     "browsers": [
         "chrome_latest",
         "firefox_latest",
         "safari_latest",
-        "ie_9",
         "ie_10",
         "ie_11"
     ],
