@@ -1,7 +1,9 @@
 language: node_js
 node_js:
-- 8.1.1
-env:
-  global:
-  - secure: EWSkw5h101Tsoq4IffhrZ8qvwCvmexzX0ji1fUXRvdN6jzy47W1oz3a6mvPxP/3uCv+dgjDW3nXsefZntv/rb0dgeg3hDOtPNLyjkUhw7I3xZ/zAFO1UHFjRdoVV9BdZGrttf63eXz8hYyIWXbIsLxY+2Lh6YVqyk+3ZFDiyZ0I=
-  - secure: HnVl9eI4o420ejZLLyZlQuU8TqaMkYp6eokf0/vB7H/6W/91Xj2bg4biwj2PBn/r+VqRpdCuRC0mQFrRZ8uTnPbDUrc8B8KFkvb9Ryjzkni+6dEIOE/j+HAHxF4KSbkKVaylg3NavNjdPefwrXVwxxE9gx1hfolz+pVTyzTLNxs=
+  - lts/*
+
+addons:
+  browserstack:
+    username: "cyrlat1haGtQ"
+    access_key:
+      secure: "cpSeKTpvsZuRsuxE06JEtNMvGUcQVw/x2GFqn1f8O0beYEsU9z9g02DFiuOkE+RKVOrI2aO4IkQRT//5y8L8467we4OhFPxpJZpOqCqzinPmOs4HgFgyghwc6d2IF0fQNmvcuFpDrMV8yuVpo/11PP6oxSGzdBsmJP1ZIGSoKvs="

@@ -1,6 +1,6 @@
 # CyrLatConverter
 
-[![BrowserStack Status](https://automate.browserstack.com/badge.svg?badge_key=MnJDS0NVV3JwNG9PSXVNY25xYzFEWkVwSWJGcnZjc3Fzbm1ZejVtcURlMD0tLXVNRmRoRHQvalpwTlhjU2ZBcWc2dXc9PQ==--1bb2a13d6aba4f718544eadc037b760289f955db%)](https://automate.browserstack.com/public-build/MnJDS0NVV3JwNG9PSXVNY25xYzFEWkVwSWJGcnZjc3Fzbm1ZejVtcURlMD0tLXVNRmRoRHQvalpwTlhjU2ZBcWc2dXc9PQ==--1bb2a13d6aba4f718544eadc037b760289f955db%)
+[![BrowserStack Status](https://automate.browserstack.com/badge.svg?badge_key=dHVuTGtIQU9hRGlkSHRpNTQvUkxrdS84MGV2RkZucHhCR3NVV3hSZjFMYz0tLXA5eXBTK3NkbUdKV1VWUG9LcnY4T3c9PQ==--4a7fe8b023e4d81edf2b47db02e1fb3a49c57d69%)](https://automate.browserstack.com/public-build/dHVuTGtIQU9hRGlkSHRpNTQvUkxrdS84MGV2RkZucHhCR3NVV3hSZjFMYz0tLXA5eXBTK3NkbUdKV1VWUG9LcnY4T3c9PQ==--4a7fe8b023e4d81edf2b47db02e1fb3a49c57d69%)
 [![Build Status](https://travis-ci.org/ivebe/CyrLatConverter.svg?branch=master)](https://travis-ci.org/ivebe/CyrLatConverter)
 [![GitHub version](https://badge.fury.io/gh/ivebe%2FCyrLatConverter.svg)](https://badge.fury.io/gh/ivebe%2FCyrLatConverter)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
@@ -8,7 +8,7 @@
 
 CyrLatConverter is a javascript library for transliteration of complete web sites (or just part of it) from Latin to Cyrillic and vice versa. Built with Serbian language as a reference.
 
-It's easy to setup and use.
+It's easy to set up and use.
 
 ## Example
     <html>
@@ -45,17 +45,19 @@ You have to initialize `CyrLatConverter` and then you can call functions from th
 
 
 #### Transliterate complete body to Cyrillic
-You can also send optional parameter which will represent query selector string, on which will transliteration be performed. If omitted it will default to the selector specified when `CyrLatConverter` was created, in this case it's `body`. 
+You can also send an optional parameter which will represent query selector string, on which transliteration will be performed. 
+If omitted it will default to the selector specified when `CyrLatConverter` was created, in this case it's `body`. 
 
     CyrLat.L2C();
 
 
 #### Transliterate complete body to Latin
-You can also send optional parameter which will represent query selector string, on which will transliteration be performed. If omitted it will default to the selector specified when `CyrLatConverter` was created, in this case it's `body`. 
+You can also send an optional parameter which will represent query selector string, on which transliteration will be performed. 
+If omitted it will default to the selector specified when `CyrLatConverter` was created, in this case it's `body`. 
 
     CyrLat.C2L();
 
-#### Transliterate when button is clicked
+#### Transliterate when a button is clicked
 
     var CyrLat = new CyrLatConverter('body').init({
         onClickCyr: '.cyr',
@@ -77,7 +79,8 @@ Or you can trigger action outside of the library. You can even use jQuery if you
     });
 
 #### Change selector without calling transliteration
-If for any reason you whish to change selector for the DOM you wish to transliterate, you can do so by calling `setSelector` function, and it's only parameter is the new selector string.
+If for any reason you wish to change selector for the DOM you wish to transliterate, you can do so by calling `setSelector` 
+function, and it's only parameter is the new selector string.
 
 #### Transliterate just plain text value, no DOM object
 If you wish to transliterate just some text value instead of DOM object, you can call `getL2C` or `getC2L` methods. 
@@ -89,14 +92,17 @@ If you wish to transliterate just some text value instead of DOM object, you can
     CyrLat.getL2C("Sample text in latin");
 
 #### Show default layout
-You could simply refresh the page, but if you are using hashtags, or cookie to remember last transliteration, better option is calling `Default` method which will handle cookie and hashtag for you and refresh the page.
+You could simply refresh the page, but if you are using hashtags, or cookie to remember last transliteration, 
+better option is calling `Default` method which will handle cookie and hashtag for you and refresh the page.
 
-*For full options list, and tutorial (Serbian) go to [https://www.ivebe.com/blog/cyrillic-to-latin-and-latin-to-cyrillic-javascript-library.html](https://www.ivebe.com/blog/cyrillic-to-latin-and-latin-to-cyrillic-javascript-library.html)*
+*For full options list, and tutorial (Serbian) go to 
+[https://www.ivebe.com/blog/cyrillic-to-latin-and-latin-to-cyrillic-javascript-library.html](https://www.ivebe.com/blog/cyrillic-to-latin-and-latin-to-cyrillic-javascript-library.html)*
 
 #### Build 
 
-Build setup requires node and uses npm, grunt, babel and uglify. Build process is simple, all it requires is cloning git repository (`git clone git@github.com:ivebe/CyrLatConverter.git`), installing dependencies (`npm install`) and building script (`grunt`).
-This will create `cyrlatconverter.min.js` file in the root of the project which you can then use.
+Build setup requires node and uses npm, grunt, babel and uglify. Build process is simple, all it requires is cloning 
+git repository (`git clone git@github.com:ivebe/CyrLatConverter.git`), installing dependencies (`yarn install` or `npm install`) 
+and building script (`grunt`). This will create `cyrlatconverter.min.js` file in the root of the project which you can then use.
 
 If you wish to run QUnit tests on BrowserStack you have *browserstack.json* set, and QUnit test are available in */test* directory.
 
@@ -131,15 +137,15 @@ Migration should be done with keeping in mind those changed features:
     * CyrLatIgnore_doubleletters_base => CyrLatIgnore_doubleLettersBase
     
 - default selector on plugin initialization is `body`, not `.CyrLatConvert` anymore.
-- button_cyr (now onClickCyr) do not have to be ID anymore, it accept any selector. Also onClickLat does the same.
+- button_cyr (now onClickCyr) do not have to be ID anymore, it accepts any selector. Also, onClickLat does the same.
 
 ### Changelog
 - **1.0.2** - Added getL2C and getC2L methods 
 - **1.0.1** - Minor modifications
 - **1.0.0** - Major rewrite, removed jQuery dependency and made library with pure JavaScript.
-- **0.7.0** - Major rewrite, code refactored to satisfy ES6. Added BrowserStack QUnit tests. List of words from dictionary minimised into a single plugin file. Removed backward compatibility calls. (IMPORTANT: if you are migrating from older versions check migration guide. For all others this is the recommended version.)
-- **0.6.2** - Added placeholder text to transliteration. Removed jQuery library from source. Removed version number from filename.
-- **0.6.0** - Added flexibile selector so plugin can be called as $("body").CyrLatConverter({...})
+- **0.7.0** - Major rewrite, code refactored to satisfy ES6. Added BrowserStack QUnit tests. List of words from the dictionary minimised into a single plugin file. Removed backward compatibility calls. (IMPORTANT: if you are migrating from older versions check migration guide. For all others this is the recommended version.)
+- **0.6.2** - Added placeholder text to transliteration. Removed jQuery library from the source. Removed version number from the filename.
+- **0.6.0** - Added flexible selector so plugin can be called as $("body").CyrLatConverter({...})
 - **0.5.4** - added onC2L and onL2C events, fixed adding button's id in plugin options
 - **0.5.3** - changed version from 0.1.5 to 0.5.3 and code published on GitHub
 - **0.1.5** - added dictionary for ignoring words from double letter chaining
