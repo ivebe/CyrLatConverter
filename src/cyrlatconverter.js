@@ -5,7 +5,7 @@
 
 
   var CyrLat = new CyrLatConverter('body').init({
-	onClickCyr: '#cirilica',
+    onClickCyr: '#cirilica',
     onClickLat: '#latinica',
   });
 
@@ -20,7 +20,7 @@
  *   www.ivebe.com/blog/cyrillic-to-latin-and-latin-to-cyrillic-jquery-plugin.html
  * ************************************************************************************
  *
- * Copyright [2018] [Danijel Petrovic]
+ * Copyright [2020] [Danijel Petrovic]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,8 +35,8 @@
  * limitations under the License.
  *
  * @author Danijel Petrovic
- * @copyright Danijel Petrovic, www.ivebe.com, 2018
- * @version 1.0.0
+ * @copyright Danijel Petrovic, www.ivebe.com, 2020
+ * @version 1.0.2
  */
 ( function( root, factory ) {
 
