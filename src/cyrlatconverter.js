@@ -36,7 +36,7 @@
  *
  * @author Danijel Petrovic
  * @copyright Danijel Petrovic, www.ivebe.com, 2020
- * @version 1.0.2
+ * @version 1.0.3
  */
 ( function( root, factory ) {
 

@@ -27,9 +27,9 @@
  *
  * @author Danijel Petrovic
  * @copyright Danijel Petrovic, www.ivebe.com, 2020
- * @version 1.0.2
+ * @version 1.0.3
  */
-	
+
 //ignore exact words, and if value is set, replace it with value
 let CyrLatIgnoreList = {
 	"plugin" : '',
@@ -39,8 +39,8 @@ let CyrLatIgnoreList = {
 	"trademark" : '',
 	"web" : '',
 	"browser" : '',
-	"javascript" : '',	
-	"microsoft" : 'Microsoft',	
+	"javascript" : '',
+	"microsoft" : 'Microsoft',
 	"firefox" : 'Firefox',
 	"opera" : 'Opera',
 	"safari" : 'Safari',
@@ -49,7 +49,7 @@ let CyrLatIgnoreList = {
 	"download" : '',
 	"windows" : '',
 	"linux" : '',
-	"office" : '',	
+	"office" : '',
  	"cookie" : '',
  	"cyrlatconverter" : '',
  	"cyrlatconvert" : '',
