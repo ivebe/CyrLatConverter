@@ -393,8 +393,10 @@
 
         Default: function() {
 
+            let $this = this;
+
             if (this.config.cookieDuration > 0)
-                setCookie('default'); //set to default, so no C2L or L2C will be called
+                setCookie.call($this, 'default'); //set to default, so no C2L or L2C will be called
 
             if (this.config.usePermalinkHash === true)
                 window.location.hash = '';
