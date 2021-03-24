@@ -7,14 +7,29 @@
     ],
     "timeout": 30,
     "browsers": [
-        "chrome_latest",
-        "firefox_latest",
-        "ie_10",
-        "ie_11",
-        "edge_latest",
+        {
+          "browser": "chrome",
+          "os": "Windows 10",
+          "versions": ["latest", "latest - 1"]
+        },
+        {
+          "browser": "firefox",
+          "os": "Windows 10",
+          "versions": ["latest", "latest - 1"]
+        },
+        {
+          "browser": "edge",
+          "os": "Windows 10",
+          "versions": ["latest", "latest - 1"]
+        },
+        {
+          "browser": "ie",
+          "os": "Windows 10",
+          "versions": ["11"]
+        },
         {
           "browser": "safari",
-          "os": "Windows 10",
+          "os": "OS X Catalina",
           "versions": ["latest"]
         }
     ],
