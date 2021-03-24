@@ -9,7 +9,6 @@
     "browsers": [
         "chrome_latest",
         "firefox_latest",
-        "safari_latest",
         "ie_10",
         "ie_11"
     ],
