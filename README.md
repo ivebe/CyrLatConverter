@@ -1,6 +1,6 @@
 # CyrLatConverter
 
-[![BrowserStack Status](https://automate.browserstack.com/badge.svg?badge_key=dHVuTGtIQU9hRGlkSHRpNTQvUkxrdS84MGV2RkZucHhCR3NVV3hSZjFMYz0tLXA5eXBTK3NkbUdKV1VWUG9LcnY4T3c9PQ==--4a7fe8b023e4d81edf2b47db02e1fb3a49c57d69%)](https://automate.browserstack.com/public-build/dHVuTGtIQU9hRGlkSHRpNTQvUkxrdS84MGV2RkZucHhCR3NVV3hSZjFMYz0tLXA5eXBTK3NkbUdKV1VWUG9LcnY4T3c9PQ==--4a7fe8b023e4d81edf2b47db02e1fb3a49c57d69%)
+[![BrowserStack Status](https://automate.browserstack.com/badge.svg?badge_key=ZkFVTnpRa04waEJ0dHliTmhSYmxHK0k1TlJwaHdCOGpab21hVkxTWVEvYz0tLWYxQ2tKVkZ5ZmdLVXdWMk5VMDVGZGc9PQ==--76f68acfe3a4b79c33c22bebae2c36aadcdfa84b%)](https://automate.browserstack.com/public-build/ZkFVTnpRa04waEJ0dHliTmhSYmxHK0k1TlJwaHdCOGpab21hVkxTWVEvYz0tLWYxQ2tKVkZ5ZmdLVXdWMk5VMDVGZGc9PQ==--76f68acfe3a4b79c33c22bebae2c36aadcdfa84b%)
 [![Build Status](https://travis-ci.com/ivebe/CyrLatConverter.svg?branch=master)](https://travis-ci.com/ivebe/CyrLatConverter)
 [![GitHub version](https://badge.fury.io/gh/ivebe%2FCyrLatConverter.svg)](https://badge.fury.io/gh/ivebe%2FCyrLatConverter)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
