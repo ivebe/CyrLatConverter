@@ -9,9 +9,14 @@
     "browsers": [
         "chrome_latest",
         "firefox_latest",
-        "safari_latest",
         "ie_10",
-        "ie_11"
+        "ie_11",
+        "edge_latest"
+        {
+          "browser": "safari",
+          "os": "Windows 10",
+          "versions": ["latest"]
+        }
     ],
     "exit_with_fail": true
 }
